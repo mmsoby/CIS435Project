@@ -25,10 +25,10 @@ echo "
 while($row = mysqli_fetch_array($result))
 {
 echo "<tr>";
-echo "<td>" . $row['FAQ.questionID'] . "</td>";
+echo "<td>" . $row['questionID'] . "</td>";
 echo "<td>" . $row['question'] . "</td>";
 echo "<td>" . $row['postedAt'] . "</td>";
-echo "<td>" . $row['Answers.answers'] . "</td>";
+echo "<td>" . $row['answer'] . "</td>";
 echo "</tr>";
 }
 echo "</table>";

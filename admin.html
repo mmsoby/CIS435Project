@@ -38,5 +38,32 @@
     <div id="questionList" class="table-responsive"></div>
 </div>
 
+<!-- Create a form to Answer a question -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Answer a question</h1>
+            <p>Answer a question</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <form action="answerQuestion.php" method="post">
+                <div class="form-group">
+                    <label for="questionID"></label>
+                    <input type="text" class="form-control" id="questionID" name="questionID"
+                           placeholder="Enter question ID">
+                    <label for="answer"></label>
+                    <input type="text" class="form-control" id="answer" name="answer"
+                           placeholder="Enter answer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>

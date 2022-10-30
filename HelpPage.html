@@ -16,70 +16,73 @@
 <section class="bg-blue p-5 text-center">
     <div class="container bg-light" style="height:100%">
         <h1>Help Page</h1>
-        <p class="bg-blue" style="font-size: 1.5vw;">
-            Here are some frequently asked questions:
-            <br>
-        </p>
-        <p class="text-start bg-blue" style="font-size: 1vw">
-            Q: How do I know when to fill out a Senior Audit form?
-            <br>
-        <p class="text-start bg-blue" style="font-size: .8vw">
-            A: If you have 30 or less credits and are able to take the rest of your required credits within the next two
-            semesters, it is a good time to get the Senior Audit form filled out and submitted to your advisor.
-            <br>
-        </p>
-        </p>
-        <p class="text-start bg-blue" style="font-size: 1vw">
-            Q: When should I apply to graduate?
-            <br>
-        <p class="text-start bg-blue" style="font-size: .8vw">
-            A: You should apply to graduate within the first 3 weeks of your last semester.
-            <br>
-        </p>
-        </p>
-        <p class="text-start bg-blue" style="font-size: 1vw">
-            Q: Where are the CECS advisors offices located?
-            <br>
-        <p class="text-start bg-blue" style="font-size: .8vw">
-            A: The CECS advisors offices are located inside the Engineering Lab Building at 1084 ELB.
-            <br>
-        </p>
-        </p>
-        <br>
         <p class="bg-blue" style="font-size: 1.5vw">
-            If you have a question that has not already been answered, please fill out the information below:
+            If you have a question that has not already been answered, please fill out the information below.
+            We will get back to you as soon as possible.
         </p>
 
+        <!--Create a form to add a new user to the database-->
+        <div class="row">
+            <div class="col-md-12">
+                <form action="addQuestion.php" method="post">
+                    <div class="form-group">
+                        <label for="question"></label>
+                        <input type="text" class="form-control" id="question" name="question"
+                               placeholder="Enter status">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
 
-        <form>
-            First and Last Name:
+
             <br>
-            <input type="text">
-            <br><br>
-            Email Address:
             <br>
-            <input type="text">
-            <br><br>
-            Question:
-            <br>
-            <input type="text">
-            <br><br>
-        </form>
 
-        <!--Submit button form question form-->
-        <button class="btn btn-primary text-black " style="background-color:#FFCB05 !important" type="submit">
-            Submit
-        </button>
+            <div id="FAQs">
 
-        <br>
-        <br>
-        <h5>Once your question has been submitted, check your inbox regularly for a reponse.</h5>
-        <br>
-        <br>
+                <p class="bg-blue" style="font-size: 3vw;">
+                    Here are some frequently asked questions:
+                    <br>
+                </p>
 
+
+            </div>
+
+
+        </div>
     </div>
 </section>
 
 <script src="js/customElements.js"></script>
 </body>
 </html>
+
+<!--
+
+            <p class="text-start bg-blue" style="font-size: 2vw">
+                Q: How do I know when to fill out a Senior Audit form?
+                <br>
+            <p class="text-start bg-blue" style="font-size: .8vw">
+                A: If you have 30 or less credits and are able to take the rest of your required credits within the next two
+                semesters, it is a good time to get the Senior Audit form filled out and submitted to your advisor.
+                <br>
+            </p>
+            </p>
+            <p class="text-start bg-blue" style="font-size: 2vw">
+                Q: When should I apply to graduate?
+                <br>
+            <p class="text-start bg-blue" style="font-size: 1vw">
+                A: You should apply to graduate within the first 3 weeks of your last semester.
+                <br>
+            </p>
+            </p>
+            <p class="text-start bg-blue" style="font-size: 2vw">
+                Q: Where are the CECS advisors offices located?
+                <br>
+            <p class="text-start bg-blue" style="font-size: 1vw">
+                A: The CECS advisors offices are located inside the Engineering Lab Building at 1084 ELB.
+                <br>
+            </p>
+            </p>
+            <br>
+-->

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#listQuestions").click(function () {
+                $("#questionList").load("listQuestions.php");
+            });
+        });
+    </script>
+</head>
+<body>
+<!-- List all questions -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Connect to the database</h1>
+            <p>Connect to the database</p>
+        </div>
+    </div>
+
+    <!--Create a button to list all the users using the php function-->
+    <div class="row">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary" id="listQuestions">List all users</button>
+        </div>
+
+        <br>
+        <br>
+    </div>
+</div>
+
+</body>
+</html>

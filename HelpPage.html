@@ -23,11 +23,24 @@
 <section class="bg-blue p-5 text-center">
     <div class="container bg-light" style="height:100%">
         <h1>Help Page</h1>
+
+
+        <div id="FAQs">
+
+            <p class="bg-blue" style="font-size: 3vw;">
+                Here are some FAQs:
+                <br>
+            </p>
+
+            <!-- List all the recently asked questions-->
+            <div id="questionList" class="table-responsive"></div>
+        </div>
+
+
         <p class="bg-blue" style="font-size: 1.5vw">
             If you have a question that has not already been answered, please fill out the information below.
             We will get back to you as soon as possible.
         </p>
-
         <!--Create a form to add a new user to the database-->
         <div class="row">
             <div class="col-md-12">
@@ -35,25 +48,11 @@
                     <div class="form-group">
                         <label for="question"></label>
                         <input type="text" class="form-control" id="question" name="question"
-                               placeholder="Enter status">
+                               placeholder="Enter your question!">
+                        <br>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-            </div>
-
-
-            <br>
-            <br>
-
-            <div id="FAQs">
-
-                <p class="bg-blue" style="font-size: 3vw;">
-                    Here are some frequently asked questions:
-                    <br>
-                </p>
-
-                <!-- List all the recently asked questions-->
-                <div id="questionList" class="table-responsive"></div>
             </div>
 
 

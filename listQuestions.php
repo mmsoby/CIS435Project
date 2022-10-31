@@ -13,7 +13,7 @@ if (!$conn) {
 }
 $result = mysqli_query($conn, "SELECT
                                    question,
-                                   GROUP_CONCAT(Answers.answer SEPARATOR '\nOR\n' ) AS answers
+                                   GROUP_CONCAT(Answers.answer SEPARATOR '<br>OR<br>' ) AS answers
                                FROM
                                    FAQ
                                LEFT JOIN Answers ON Answers.questionID = FAQ.questionID

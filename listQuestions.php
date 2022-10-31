@@ -13,7 +13,7 @@ if (!$conn) {
 }
 $result = mysqli_query($conn, "SELECT
                                    question,
-                                   GROUP_CONCAT(Answers.answer SEPARATOR '\n' ) AS answers
+                                   GROUP_CONCAT(Answers.answer SEPARATOR '\n\n\n' ) AS answers
                                FROM
                                    FAQ
                                LEFT JOIN Answers ON Answers.questionID = FAQ.questionID

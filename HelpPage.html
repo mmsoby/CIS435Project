@@ -11,9 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            $("#listQuestions").click(function () {
-                $("#questionList").load("listQuestions.php");
-            });
+            $("#questionList").load("listQuestions.php");
         });
     </script>
 </head>
@@ -55,17 +53,7 @@
                 </p>
 
                 <!-- List all the recently asked questions-->
-                <div class="row">
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary" id="listQuestions">List all Questions</button>
-                    </div>
-
-                    <br>
-                    <br>
-                </div>
                 <div id="questionList" class="table-responsive"></div>
-
-
             </div>
 
 

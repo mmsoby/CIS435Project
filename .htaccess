@@ -1,6 +1,0 @@
-<Files admin.html>
-AuthName "Dialog prompt"
-AuthType Basic
-AuthUserFile /var/www/html/group15/admin/.htpasswd
-Require valid-user
-</Files>

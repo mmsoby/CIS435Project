@@ -27,7 +27,7 @@ $sql2 = "SELECT MAX(id) FROM FAQ";
 $result = mysqli_query($conn, $sql2);
 
 // Insert empty answer into answer array with highest id
-$sql3 = "INSERT INTO Answers (id, answer)"
+$sql3 = "INSERT INTO Answers (questionID, answer)"
     . "VALUES ('" . $result . "', '')";
 mysqli_query($conn, $sql3);
 

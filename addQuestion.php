@@ -35,5 +35,5 @@ mysqli_query($conn, $sql3);
 
 mysqli_close($conn);
 
-// header("Location: HelpPage.html");
+header("Location: HelpPage.html");
 ?>

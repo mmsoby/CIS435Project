@@ -23,7 +23,7 @@ if (mysqli_query($conn, $sql)) {
 }
 
 // Select highest id
-$sql2 = "SELECT MAX(id) FROM FAQ";
+$sql2 = "SELECT MAX(questionID) FROM FAQ";
 $result = mysqli_query($conn, $sql2);
 
 // Insert empty answer into answer array with highest id

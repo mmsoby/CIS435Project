@@ -12,9 +12,15 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
+//
+// $sql = "INSERT INTO Answers (questionID, answer)"
+//     . "VALUES ('" . $_POST['questionID'] . "', '" . $_POST['answer'] . "')";
+//
+$sql = "UPDATE Answers
+        SET answer = '" . $_POST['answer'] . "'
+        WHERE questionID = '" . $_POST['questionID'] . "'";
 
-$sql = "INSERT INTO Answers (questionID, answer)"
-    . "VALUES ('" . $_POST['questionID'] . "', '" . $_POST['answer'] . "')";
+
 
 
 

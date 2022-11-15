@@ -15,7 +15,8 @@ if (!$conn) {
 
 $sql = "INSERT INTO FAQ (question, postedAt)"
     . "VALUES ('" . $_POST['question'] . "', '"  . $postedAt . "')";
-mysqli_query($conn, $sql)
+
+mysqli_query($conn, $sql);
 
 // Select highest id
 $sql2 = "SELECT MAX(id) FROM FAQ";
@@ -24,7 +25,7 @@ $result = mysqli_query($conn, $sql2);
 // Insert empty answer into answer array with highest id
 $sql3 = "INSERT INTO Answers (id, answer)"
     . "VALUES ('" . $result . "', '')";
-mysqli_query($conn, $sql3)
+mysqli_query($conn, $sql3);
 
 
 

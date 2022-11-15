@@ -22,6 +22,22 @@ if (mysqli_query($conn, $sql)) {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 
+// Select highest id
+$sql = "SELECT MAX(id) FROM FAQ";
+$result = mysqli_query($conn, $sql);
+
+// Insert empty answer into answer array with highest id
+$sql = "INSERT INTO Answers (id, answer)"
+    . "VALUES ('" . $result . "', '')";
+
+if (mysqli_query($conn, $sql)) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+
+
+
 
 mysqli_close($conn);
 

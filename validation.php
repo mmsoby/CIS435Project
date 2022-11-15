@@ -21,4 +21,6 @@ else
    echo "</script>";
    exit();
 }
+
+header("Location: admin.php");
 ?>

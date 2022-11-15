@@ -15,12 +15,7 @@ if (!$conn) {
 
 $sql = "INSERT INTO FAQ (question, postedAt)"
     . "VALUES ('" . $_POST['question'] . "', '"  . $postedAt . "')";
-
-if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
+mysqli_query($conn, $sql)
 
 // Select highest id
 $sql = "SELECT MAX(id) FROM FAQ";

@@ -18,18 +18,12 @@ $sql = "INSERT INTO FAQ (question, postedAt)"
 mysqli_query($conn, $sql)
 
 // Select highest id
-$sql = "SELECT MAX(id) FROM FAQ";
-$result = mysqli_query($conn, $sql);
+$sql2 = "SELECT MAX(id) FROM FAQ";
+$result = mysqli_query($conn, $sql2);
 
 // Insert empty answer into answer array with highest id
-$sql = "INSERT INTO Answers (id, answer)"
+$sql3 = "INSERT INTO Answers (id, answer)"
     . "VALUES ('" . $result . "', '')";
-
-if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
 
 
 

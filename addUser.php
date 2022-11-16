@@ -20,4 +20,4 @@ if (mysqli_query($conn, $sql)) {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 mysqli_close($conn);
-header("Location: HelpPage.html");
+header("Location: admin.php");

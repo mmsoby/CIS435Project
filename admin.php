@@ -86,8 +86,7 @@ exit('Your session expired!');
     <div class="addUser">
     <div class="row">
             <div class="col-md-12">
-                <h1>Delete a question</h1>
-                <p>Delete a question</p>
+                <h1>Add a user</h1>
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -99,7 +98,7 @@ exit('Your session expired!');
                             <label for="password2"></label>
                             <input type="text" class="form-control" id="password2" name="password2"
                                    placeholder="Enter new user's password">
-                            <button type="submit" class="btn btn-primary">Delete</button>
+                            <button type="submit" class="btn btn-primary">Add User</button>
                         </div>
                     </form>
                 </div>

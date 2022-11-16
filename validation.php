@@ -19,8 +19,8 @@ $result = mysqli_query($conn, $s);
 if ($row = mysqli_fetch_row($result))
 {
   // row fecthed, user found
-  echo $row;
-  $user_id = $row['username']; // Let expect that usertable has user_id column
+  echo $row[0];
+  $user_id = $row['username'];
   $_SESSION['current_user_id'] = $user_id;
 }
 else

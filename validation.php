@@ -1,8 +1,8 @@
 <?php
 $s = "select * from Users where username = '"
-     .mysqli_real_escape_string($con, $name).
+     . $_POST['user'].
      "' and password = '"
-     .mysqli_real_escape_string($con, $pass)
+     .$_POST['password']
      ."'";
 
 $result = mysqli_query($con, $s);

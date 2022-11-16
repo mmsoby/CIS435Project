@@ -21,3 +21,4 @@ if (mysqli_query($conn, $sql)) {
 }
 mysqli_close($conn);
 header("Location: admin.php");
+?>

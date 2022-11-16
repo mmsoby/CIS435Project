@@ -1,4 +1,8 @@
-<?php if (!isset($_SESSION['current_user_id'])) { exit('Your session expiried!') }
+<?php
+if (!isset($_SESSION['current_user_id']))
+{
+exit('Your session expiried!')
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

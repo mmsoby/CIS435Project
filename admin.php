@@ -1,5 +1,5 @@
 <?php
-if (isset($_SESSION['current_user_id']))
+if (!isset($_SESSION['current_user_id']))
 {
 exit('Your session expired!');
 }

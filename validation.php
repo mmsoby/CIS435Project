@@ -20,7 +20,7 @@ if ($row = mysqli_fetch_row($result))
 {
   // row fecthed, user found
   echo $row[0];
-  $user_id = $row['username'];
+  $user_id = $row[0];
   $_SESSION['current_user_id'] = $user_id;
 }
 else

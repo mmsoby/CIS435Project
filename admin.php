@@ -1,7 +1,7 @@
 <?php
 if (!isset($_SESSION['current_user_id']))
 {
-exit('Your session expiried!')
+exit('Your session expiried!');
 }
 ?>
 <!DOCTYPE html>

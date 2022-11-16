@@ -2,7 +2,7 @@
 if ( isset( $_FILES['pdfFile'] ) ) {
 	if ($_FILES['pdfFile']['type'] == "application/pdf") {
 		$source_file = $_FILES['pdfFile']['tmp_name'];
-		$dest_file = "upload/".$_FILES['pdfFile']['name'];
+		$dest_file = "Resources/".$_FILES['pdfFile']['name'];
 
 		if (file_exists($dest_file)) {
 			print "The file name already exists!!";

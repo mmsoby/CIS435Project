@@ -19,7 +19,6 @@ $result = mysqli_query($conn, $s);
 if ($row = mysqli_fetch_row($result))
 {
   // row fecthed, user found
-  echo $row[0];
   $user_id = $row[0];
   $_SESSION['current_user_id'] = $user_id;
 }
@@ -32,5 +31,5 @@ else
    exit();
 }
 
-// header("Location: admin.php");
+header("Location: admin.php");
 ?>

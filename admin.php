@@ -82,6 +82,30 @@ exit('Your session expired!');
         </div>
     </div>
 
+    <!--Create a form to add a user-->
+    <div class="addUser">
+    <div class="row">
+            <div class="col-md-12">
+                <h1>Delete a question</h1>
+                <p>Delete a question</p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="addUser.php" method="post">
+                        <div class="form-group">
+                            <label for="username2"></label>
+                            <input type="text" class="form-control" id="username2" name="username2"
+                                   placeholder="Enter new user's username">
+                            <label for="password2"></label>
+                            <input type="text" class="form-control" id="password2" name="password2"
+                                   placeholder="Enter new user's password">
+                            <button type="submit" class="btn btn-primary">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
 </div>
 
 

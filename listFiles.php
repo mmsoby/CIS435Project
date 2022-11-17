@@ -10,7 +10,7 @@ echo '<div class="dropdown">
 foreach($files as $file) {
   //do your work here
   if ($file != "." && $file != "..") {
-  echo "<a class= 'dropdown-item' href='Resources/CurriculumSheets/" . $file . "'>" . $file ."</a>";
+  echo "<a class= 'dropdown-item' href='Resources/CurriculumSheets/" . $file . "' download='Resources/CurriculumSheets/". $file ."'>" . $file ."</a>";
   }
 }
 

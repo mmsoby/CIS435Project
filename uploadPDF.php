@@ -2,7 +2,8 @@
 if ( isset( $_FILES['pdfFile'] ) ) {
 	if ($_FILES['pdfFile']['type'] == "application/pdf") {
 		$source_file = $_FILES['pdfFile']['tmp_name'];
-		$dest_file = "Resources/CurriculumSheets/".$_FILES['pdfFile']['name'];
+		$new_str = str_replace(" ", "", $_FILES['pdfFile']['name']);
+		$dest_file = "Resources/CurriculumSheets/".$new_str;
 
 		if (file_exists($dest_file)) {
 			print "The file name already exists!!";
@@ -15,7 +16,7 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 				print "<b><u>Details : </u></b><br/>";
 				print "File Name : ".$_FILES['pdfFile']['name']."<br.>"."<br/>";
 				print "File Size : ".$_FILES['pdfFile']['size']." bytes"."<br/>";
-				print "File location : upload/".$_FILES['pdfFile']['name']."<br/>";
+				print "File location : Resources/CurriculumSheets/".$new_str."<br/>";
 			}
 		}
 	}

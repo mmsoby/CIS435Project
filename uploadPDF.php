@@ -3,7 +3,7 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 	if ($_FILES['pdfFile']['type'] == "application/pdf") {
 		$source_file = $_FILES['pdfFile']['tmp_name'];
 		$new_str = str_replace(" ", "", $_FILES['pdfFile']['name']);
-		$dest_file = "Resources/CurriculumSheets/".$new_str;
+		$dest_file = "../group3/".$new_str;
 
 		if (file_exists($dest_file)) {
 			print "The file name already exists!!";

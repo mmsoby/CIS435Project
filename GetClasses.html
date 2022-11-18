@@ -12,6 +12,7 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://frontenddeveloping.github.io/pdfjs-dist/build/pdf.js"></script>
     <script src="https://frontenddeveloping.github.io/pdfjs-dist/build/pdf.worker.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
             $("#dropdown_items").load("dropdown_items.php");
@@ -36,7 +37,7 @@
         <!--Select Major-->
         <div class="input-group">
             <!--            <label class="input-group-text" for="inputGroupSelect01">Major</label>-->
-            <div class="dropdown_items"></div>
+            <div id="dropdown_items"></div>
         </div>
 
         <!--Upload-->

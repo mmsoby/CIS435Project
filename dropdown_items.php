@@ -1,7 +1,7 @@
 <?php
 $files = scandir('Resources/CurriculumSheets/');
 
-echo "<select class='form-select'> <option value="0">Select a file</option>";
+echo "<select class='form-select'> <option value='0'>Select a file</option>";
 
 
 

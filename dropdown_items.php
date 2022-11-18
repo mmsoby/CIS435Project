@@ -1,7 +1,7 @@
 <?php
 $files = scandir('Resources/CurriculumSheets/');
 
-echo "<select class='form-control'>";
+echo "<select class='form-select'>";
 
 foreach($files as $file) {
   //do your work here
@@ -9,7 +9,6 @@ foreach($files as $file) {
   echo "<option value='". $file ."' >" . $file . "</option>";
   }
   }
-}
 
 echo "</select>";
 

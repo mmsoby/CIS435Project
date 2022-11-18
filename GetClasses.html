@@ -44,28 +44,60 @@
 
 
                 <h2>Upload PDF File :</h2>
-                <form enctype="multipart/form-data" action="uploadPDF.php" method="post">
+                <form enctype="multipart/form-data" action="uploadPDF_fromUser.php" method="post">
                     <p>
                         <input type="hidden" name="MAX_FILE_SIZE" value="200000"/>
                         <input type="file" name="pdfFile"/><br/>
                         <br/>
-                        <input type="submit" value="upload!"/>
+                        <input type="submit" value="Download"/>
                     </p>
                 </form>
             </div>
         </div>
-        <button class="btn btn-primary text-black " style="background-color:#FFCB05 !important" type="submit">
-            Upload +
-        </button>
 
-        <p>Below is your download-able, filled out curriculum sheet.</p>
+        <!--        <p>Below is your download-able, filled out curriculum sheet.</p>-->
 
-        <button class="btn btn-primary text-black" style="background-color:#FFCB05 !important" type="submit">
-            <a style="color: inherit; text-decoration: none;" href="Resources/BlankSeniorAudit.pdf"
-               download="BlankSeniorAudit.pdf">Download!</a>
-        </button>
+        <!--        <button class="btn btn-primary text-black" style="background-color:#FFCB05 !important" type="submit">-->
+        <!--            <a style="color: inherit; text-decoration: none;" href="Resources/BlankSeniorAudit.pdf"-->
+        <!--               download="BlankSeniorAudit.pdf">Download!</a>-->
+        <!--        </button>-->
     </div>
 </section>
+
+<!--<script>-->
+<!--    function gettext(pdfUrl) {-->
+<!--        var pdf = pdfjsLib.getDocument(pdfUrl);-->
+<!--        return pdf.then(function (pdf) { // get all pages text-->
+<!--            var maxPages = pdf.pdfInfo.numPages;-->
+<!--            var countPromises = []; // collecting all page promises-->
+<!--            for (var j = 1; j <= maxPages; j++) {-->
+<!--                var page = pdf.getPage(j);-->
+
+<!--                var txt = "";-->
+<!--                countPromises.push(page.then(function (page) { // add page promise-->
+<!--                    var textContent = page.getTextContent();-->
+<!--                    return textContent.then(function (text) { // return content promise-->
+<!--                        return text.items.map(function (s) {-->
+<!--                            return s.str;-->
+<!--                        }).join(''); // value page text-->
+<!--                    });-->
+<!--                }));-->
+<!--            }-->
+<!--            // Wait for all pages and join text-->
+<!--            return Promise.all(countPromises).then(function (texts) {-->
+<!--                return texts.join('');-->
+<!--            });-->
+<!--        });-->
+<!--    }-->
+
+<!--    // waiting on gettext to finish completion, or error-->
+<!--    gettext("https://cdn.mozilla.net/pdfjs/tracemonkey.pdf").then(function (text) {-->
+<!--            alert('parse ' + text);-->
+<!--        },-->
+<!--        function (reason) {-->
+<!--            console.error(reason);-->
+<!--        });-->
+<!--</script>-->
 
 <!--<script id="jsbin-javascript">-->
 <!--    function processAnnotations(annotationsData) {-->
@@ -122,6 +154,7 @@
 <!--    };-->
 <!--</script>-->
 <!--bootstrap script-->
+<script src="https://npmcdn.com/pdfjs-dist/build/pdf.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>

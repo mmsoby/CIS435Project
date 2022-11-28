@@ -1,4 +1,6 @@
 <?php
+include "alt_autoload.php-dist";
+
 if ( isset( $_FILES['pdfFile'] ) ) {
 	if ($_FILES['pdfFile']['type'] == "application/pdf") {
 		$source_file = $_FILES['pdfFile']['tmp_name'];
@@ -6,10 +8,19 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 		$new_str = str_replace("%20", "", $new_str);
 		$dest_file = "Resources/UserFiles/".$new_str;
 
-		echo '<head><script type="text/javascript" src="js/GenerateClasses.js"></script></head>';
+// 		echo '<head><script type="text/javascript" src="js/GenerateClasses.js"></script></head>';
+//
+//         // Call the generateClasses javascript function
+//         echo '<script type="text/javascript">window.onload = function() {GenerateClass('.'"../Resources/UserFiles/'.$new_str.'");};</script>';
 
-        // Call the generateClasses javascript function
-        echo '<script type="text/javascript">window.onload = function() {GenerateClass('.'"../Resources/UserFiles/'.$new_str.'");};</script>';
+// Begin php parse using php library
+        $parser = new \Smalot\PdfParser\Parser();
+        $pdf    = $parser->parseFile($source_file);
+        $text = $pdf->getText();
+        echo $text;
+
+
+
 
 		if (file_exists($dest_file)) {
 			print "The file name already exists!!";

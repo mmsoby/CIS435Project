@@ -14,7 +14,7 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 //         echo '<script type="text/javascript">window.onload = function() {GenerateClass('.'"../Resources/UserFiles/'.$new_str.'");};</script>';
 
 // Begin php parse using php library
-        $parser = new \Smalot\PdfParser\Parser();
+        $parser = new src\Smalot\PdfParser\Parser();
         $pdf    = $parser->parseFile($source_file);
         $text = $pdf->getText();
         echo $text;

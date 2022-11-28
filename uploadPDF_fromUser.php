@@ -29,10 +29,9 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 		}
 	}
 }
-echo '<script src="js/GenerateClasses.js"></script>';
 
 // Call the generateClasses javascript function
-echo '<script type="text/javascript">GenerateClass();</script>';
+echo '<script type="text/javascript">console.log("GEenerateinodinsgljn");</script>';
 
 //header("Location: GetClasses.html");
 ?>

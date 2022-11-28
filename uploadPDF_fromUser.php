@@ -32,10 +32,12 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 echo '<script type="text/javascript" src="js/GenerateClasses.js"></script>';
 
 // Call the generateClasses javascript function
-echo '<script type="text/javascript">window.onload = function() {
-                                        console.log("window.onload");
-                                       GenerateClass();
-                                     };</script>';
+// echo '<script type="text/javascript">window.onload = function() {
+//                                         console.log("window.onload");
+//                                        GenerateClass();
+//                                      };</script>';
+
+echo '<body onload="GenerateClass()">';
 
 //header("Location: GetClasses.html");
 ?>

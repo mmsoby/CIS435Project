@@ -1,4 +1,4 @@
 function GenerateClass (pdfURL) {
-   var pdf = pdfjsLib.getDocument(pdfUrl);
+   let pdf = pdfjsLib.getDocument(pdfURL);
    console.log("url is " + pdfURL);
 }

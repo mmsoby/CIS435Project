@@ -33,5 +33,5 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 // Call the generateClasses javascript function
 echo '<script type="text/javascript">GenerateClass();</script>';
 
-header("Location: GetClasses.html");
+//header("Location: GetClasses.html");
 ?>

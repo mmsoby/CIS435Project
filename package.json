@@ -1,0 +1,7 @@
+{
+  "name": "CIS435Project",
+  "version": "1.0.0",
+  "dependencies": {
+    "pdfjs-dist": "^3.1.81"
+  }
+}

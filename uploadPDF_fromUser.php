@@ -6,6 +6,11 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 		$new_str = str_replace("%20", "", $new_str);
 		$dest_file = "Resources/UserFiles/".$new_str;
 
+		echo '<head><script type="text/javascript" src="js/GenerateClasses.js"></script></head>';
+
+        // Call the generateClasses javascript function
+        echo '<script type="text/javascript">window.onload = function() {GenerateClass('.$dest_file.');};</script>';
+
 		if (file_exists($dest_file)) {
 			print "The file name already exists!!";
 		}
@@ -29,15 +34,6 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 		}
 	}
 }
-echo '<head><script type="text/javascript" src="js/GenerateClasses.js"></script></head>';
-
-// Call the generateClasses javascript function
-echo '<script type="text/javascript">window.onload = function() {
-                                        console.log("window.onload");
-                                       GenerateClass();
-                                     };</script>';
-
-// echo '<body onload="GenerateClass()">';
 
 //header("Location: GetClasses.html");
 ?>

@@ -17,7 +17,7 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 				print "<b><u>Details : </u></b><br/>";
 				print "File Name : ".$_FILES['pdfFile']['name']."<br.>"."<br/>";
 				print "File Size : ".$_FILES['pdfFile']['size']." bytes"."<br/>";
-				print "File location : Resources/CurriculumSheets/".$new_str."<br/>";
+				print "File location : Resources/UserFiles/".$new_str."<br/>";
 			}
 		}
 	}
@@ -29,6 +29,9 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 		}
 	}
 }
+
+// Call the generateClasses javascript function
+echo '<script type="text/javascript">GenerateClasses();</script>';
 
 header("Location: GetClasses.html");
 ?>

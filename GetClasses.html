@@ -12,6 +12,7 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://frontenddeveloping.github.io/pdfjs-dist/build/pdf.js"></script>
     <script src="https://frontenddeveloping.github.io/pdfjs-dist/build/pdf.worker.js"></script>
+    <script src="js/GenerateClasses.js"></script>
     <script>
         $(document).ready(function () {
             $("#dropdown_items").load("dropdown_items.php");
@@ -40,19 +41,17 @@
 
         <!--Upload-->
         <div class="uploadPDF">
-            <div style="padding: 20px; border: 1px solid #999">
 
 
-                <h2>Upload PDF File :</h2>
-                <form enctype="multipart/form-data" action="uploadPDF_fromUser.php" method="post">
-                    <p>
-                        <input type="hidden" name="MAX_FILE_SIZE" value="200000"/>
-                        <input type="file" name="pdfFile"/><br/>
-                        <br/>
-                        <input type="submit" value="Download"/>
-                    </p>
-                </form>
-            </div>
+            <h2>Upload PDF File :</h2>
+            <form enctype="multipart/form-data" action="uploadPDF_fromUser.php" method="post">
+                <p>
+                    <input type="hidden" name="MAX_FILE_SIZE" value="200000"/>
+                    <input type="file" name="pdfFile"/><br/>
+                    <br/>
+                    <input type="submit" value="Get Classes"/>
+                </p>
+            </form>
         </div>
 
         <!--        <p>Below is your download-able, filled out curriculum sheet.</p>-->

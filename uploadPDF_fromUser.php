@@ -8,7 +8,7 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 		$new_str = str_replace("%20", "", $new_str);
 		$dest_file = "Resources/UserFiles/".$new_str;
 
-		echo '<head><script type="text/javascript" src="GenerateClasses.js"></script></head>';
+		echo '<head><script type="module" src="GenerateClasses.js"></script></head>';
 
         // Call the generateClasses javascript function
         echo '<script type="text/javascript">window.onload = function() {GenerateClass('.'"../Resources/UserFiles/'.$new_str.'");};</script>';

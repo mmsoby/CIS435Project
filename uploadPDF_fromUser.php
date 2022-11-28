@@ -29,7 +29,7 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 		}
 	}
 }
-echo '<script type="text/javascript" src="js/GenerateClasses.js"></script>';
+echo '<head><script type="text/javascript" src="js/GenerateClasses.js"></script></head>';
 
 // Call the generateClasses javascript function
 // echo '<script type="text/javascript">window.onload = function() {

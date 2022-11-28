@@ -1,3 +1,5 @@
-export default  function GenerateClasses ( ) {
+function GenerateClass () {
    console.log("GenerateClasses");
 }
+
+export default GenerateClass;

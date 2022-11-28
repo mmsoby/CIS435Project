@@ -1,3 +1,3 @@
 function GenerateClass () {
-   console.log("GenerateClasses");
+   console.log("GenerateClasses potato");
 }

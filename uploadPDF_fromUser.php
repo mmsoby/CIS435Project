@@ -9,7 +9,7 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 		echo '<head><script type="text/javascript" src="js/GenerateClasses.js"></script></head>';
 
         // Call the generateClasses javascript function
-        echo '<script type="text/javascript">window.onload = function() {GenerateClass('.'Resources/UserFiles/'.$new_str.');};</script>';
+        echo '<script type="text/javascript">window.onload = function() {GenerateClass('.'"Resources/UserFiles/'.$new_str.'");};</script>';
 
 		if (file_exists($dest_file)) {
 			print "The file name already exists!!";

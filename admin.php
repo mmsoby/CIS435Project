@@ -41,7 +41,6 @@ exit('Your session expired!');
     <div class="row">
         <div class="col-md-12">
             <h1>Answer a question</h1>
-            <p>Answer a question</p>
         </div>
     </div>
 

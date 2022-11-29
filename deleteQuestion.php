@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 }
 
 // SQL to delete a record based on questionID
-$sql = "DELETE FROM FAQ WHERE questionID = " . $_POST['questionID2'];
+$sql = "DELETE FROM FAQ WHERE questionID = " . $_POST['questionID2']."; DELETE FROM Answers WHERE questionID = ". $_POST['questionID2'];
 
 if (mysqli_query($conn, $sql)) {
     echo "Record deleted successfully";

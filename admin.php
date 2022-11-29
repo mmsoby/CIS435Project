@@ -36,8 +36,8 @@ exit('Your session expired!');
     <div id="questionList" class="table-responsive"></div>
 </div>
 
-<!-- Create a form to Answer a question -->
 <div class="container">
+    <!-- Create a form to Answer a question -->
     <div class="answerQuestion">
         <div class="col-md-12">
             <h2>Answer a Question</h2>
@@ -99,25 +99,26 @@ exit('Your session expired!');
 
     <!--Create a form to add a user-->
     <div class="addUser">
+        <div class="col-md-12">
+            <h1>Add a user</h1>
+        </div>
+    </div>
+
     <div class="row">
+        <div class="row">
             <div class="col-md-12">
-                <h1>Add a user</h1>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <form action="addUser.php" method="post">
-                        <div class="form-group">
-                            <label for="username2"></label>
-                            <input type="text" class="form-control" id="username2" name="username2"
-                                   placeholder="Enter new user's username">
-                            <label for="password2"></label>
-                            <input type="text" class="form-control" id="password2" name="password2"
-                                   placeholder="Enter new user's password">
-                            <br>
-                            <button type="submit" class="btn btn-primary">Add User</button>
-                        </div>
-                    </form>
-                </div>
+                <form action="addUser.php" method="post">
+                    <div class="form-group">
+                        <label for="username2"></label>
+                        <input type="text" class="form-control" id="username2" name="username2"
+                               placeholder="Enter new user's username">
+                        <label for="password2"></label>
+                        <input type="text" class="form-control" id="password2" name="password2"
+                               placeholder="Enter new user's password">
+                        <br>
+                        <button type="submit" class="btn btn-primary">Add User</button>
+                    </div>
+                </form>
             </div>
         </div>
 

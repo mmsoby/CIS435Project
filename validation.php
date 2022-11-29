@@ -18,7 +18,8 @@ $result = mysqli_query($conn, $s);
 
 if ($row = mysqli_fetch_row($result))
 {
-  // row fecthed, user found
+
+  // row fetched, user found
   session_start();
   $user_id = $row[0];
   $_SESSION['current_user_id'] = $user_id;

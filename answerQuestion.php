@@ -33,5 +33,5 @@ if (mysqli_query($conn, $sql)) {
 
 mysqli_close($conn);
 
-header("Location: admin.html");
+header("Location: admin.php");
 ?>

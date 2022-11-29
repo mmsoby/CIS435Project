@@ -21,19 +21,18 @@ exit('Your session expired!');
             $("#questionList").load("listQuestionsForAdmin.php");
         });
     </script>
+    <title>Admin Page</title>
 </head>
 <body>
 <!-- List all questions -->
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Admin page, answer questions</h1>
-            <p>List of all questions</p>
+            <h1>FAQ</h1>
         </div>
     </div>
 
     <!--Create a button to list all the questions using the php function-->
-    <br>
     <div id="questionList" class="table-responsive"></div>
 </div>
 
@@ -56,6 +55,7 @@ exit('Your session expired!');
                     <label for="answer"></label>
                     <input type="text" class="form-control" id="answer" name="answer"
                            placeholder="Enter answer">
+                    <br>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
@@ -67,7 +67,6 @@ exit('Your session expired!');
     <div class="row">
         <div class="col-md-12">
             <h1>Delete a question</h1>
-            <p>Delete a question</p>
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -76,6 +75,7 @@ exit('Your session expired!');
                         <label for="questionID2"></label>
                         <input type="text" class="form-control" id="questionID2" name="questionID2"
                                placeholder="Enter question ID">
+                        <br>
                         <button type="submit" class="btn btn-primary">Delete</button>
                     </div>
                 </form>
@@ -85,8 +85,6 @@ exit('Your session expired!');
 
     <!--Create a form to upload a pdf-->
     <div class="uploadPDF">
-    <div style="padding: 20px; border: 1px solid #999">
-
 
     <h2>Upload PDF File :</h2>
         <form enctype="multipart/form-data" action="uploadPDF.php" method="post">
@@ -116,6 +114,7 @@ exit('Your session expired!');
                             <label for="password2"></label>
                             <input type="text" class="form-control" id="password2" name="password2"
                                    placeholder="Enter new user's password">
+                            <br>
                             <button type="submit" class="btn btn-primary">Add User</button>
                         </div>
                     </form>

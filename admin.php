@@ -40,7 +40,7 @@ exit('Your session expired!');
 <div class="container">
     <div class="answerQuestion">
         <div class="col-md-12">
-            <h1>Answer a question</h1>
+            <h2>Answer a Question</h2>
         </div>
     </div>
 
@@ -64,7 +64,7 @@ exit('Your session expired!');
     <!--Create a form to delete a question-->
     <div class="deleteQuestion">
         <div class="col-md-12">
-            <h1>Delete a question</h1>
+            <h2>Delete a Question</h2>
         </div>
     </div>
 
@@ -85,7 +85,7 @@ exit('Your session expired!');
     <!--Create a form to upload a pdf-->
     <div class="uploadPDF">
 
-    <h2>Upload PDF File :</h2>
+    <h2>Upload PDF File:</h2>
         <form enctype="multipart/form-data" action="uploadPDF.php" method="post">
             <p>
                 <input type="hidden" name="MAX_FILE_SIZE" value="200000" />

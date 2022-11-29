@@ -84,8 +84,9 @@ exit('Your session expired!');
 
     <!--Create a form to upload a pdf-->
     <div class="uploadPDF">
-
-    <h2>Upload PDF File:</h2>
+    <div class="col-md-12">
+        <h2>Upload a PDF:</h2>
+    </div>
         <form enctype="multipart/form-data" action="uploadPDF.php" method="post">
             <p>
                 <input type="hidden" name="MAX_FILE_SIZE" value="200000" />

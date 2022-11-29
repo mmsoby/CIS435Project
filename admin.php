@@ -100,7 +100,7 @@ exit('Your session expired!');
     <!--Create a form to add a user-->
     <div class="addUser">
         <div class="col-md-12">
-            <h1>Add a user</h1>
+            <h2>Add a User</h2>
         </div>
     </div>
 

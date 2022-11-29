@@ -38,7 +38,7 @@ exit('Your session expired!');
 
 <!-- Create a form to Answer a question -->
 <div class="container">
-    <div class="row">
+    <div class="answerQuestion">
         <div class="col-md-12">
             <h1>Answer a question</h1>
         </div>
@@ -63,22 +63,22 @@ exit('Your session expired!');
 
     <!--Create a form to delete a question-->
     <div class="deleteQuestion">
-    <div class="row">
         <div class="col-md-12">
             <h1>Delete a question</h1>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <form action="deleteQuestion.php" method="post">
-                    <div class="form-group">
-                        <label for="questionID2"></label>
-                        <input type="text" class="form-control" id="questionID2" name="questionID2"
-                               placeholder="Enter question ID">
-                        <br>
-                        <button type="submit" class="btn btn-primary">Delete</button>
-                    </div>
-                </form>
-            </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <form action="deleteQuestion.php" method="post">
+                <div class="form-group">
+                    <label for="questionID2"></label>
+                    <input type="text" class="form-control" id="questionID2" name="questionID2"
+                           placeholder="Enter question ID">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </div>
+            </form>
         </div>
     </div>
 

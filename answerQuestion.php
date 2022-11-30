@@ -47,12 +47,10 @@ if (mysqli_num_rows($result) > 0) {
 if (mysqli_num_rows($result2) == 0) {
     $sql = "INSERT INTO QnA (questionID, answerID)"
         . "VALUES ('" . $_POST['questionID'] . "', '" . mysqli_fetch_array($result4)['answerID'] . "')";
-    mysqli_query($conn, $sql);
 } else {
     $sql = "UPDATE QnA
             SET answerID = '" . mysqli_fetch_array($result4)['answerID'] . "'
             WHERE questionID = '" . $_POST['questionID'] . "'";
-    mysqli_query($conn, $sql);
 }
 
 

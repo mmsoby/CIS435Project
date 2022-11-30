@@ -37,7 +37,7 @@ $result2 = mysqli_query($conn, "SELECT *
                                 WHERE questionID = '" . $_POST['questionID'] . "'");
 
 // Set result4 to answerID
-if (isset(result)) {
+if (null !== result) {
     $result4 = $result;
 } else {
     $result4 = $result3;

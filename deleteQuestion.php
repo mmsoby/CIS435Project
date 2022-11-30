@@ -20,7 +20,7 @@ if (mysqli_query($conn, $sql)) {
     echo "Error updating record: " . mysqli_error($conn);
 }
 
-$sql2 = "DELETE FROM Answers WHERE questionID = " . $_POST['questionID2'];
+$sql2 = "DELETE FROM QnA WHERE questionID = " . $_POST['questionID2'];
 
 if (mysqli_query($conn, $sql2)) {
     echo "Record deleted successfully";

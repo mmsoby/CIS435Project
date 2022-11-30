@@ -2,7 +2,7 @@
 $files = scandir('Resources/CurriculumSheets/');
 
 echo '<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" style="background-color:#FFCB05 !important" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn btn-secondary dropdown-toggle" style="color:black !important background-color:#FFCB05 !important" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Download!
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">';

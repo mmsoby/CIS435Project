@@ -20,7 +20,7 @@ if (!$conn) {
 // Check if answer is already in database
 $result = mysqli_query($conn, "SELECT answerID
                                FROM Answers
-                               WHERE answerID = '" . $_POST['answer'] . "'");
+                               WHERE answer = '" . $_POST['answer'] . "'");
 
 // Must add answer to answer table if it is not already there
 if (mysqli_num_rows($result) == 0) {

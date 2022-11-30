@@ -1,0 +1,2 @@
+class name,prereqs,credits
+cis 435,(cis 150&cis 200)|(cis135),3

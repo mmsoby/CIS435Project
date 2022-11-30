@@ -18,7 +18,7 @@ if (!$conn) {
 //
 
 // Check if answer is already in database
-$result = mysqli_query($conn, "SELECT *
+$result = mysqli_query($conn, "SELECT answerID
                                FROM Answers
                                WHERE answerID = '" . $_POST['answer'] . "'");
 
@@ -27,6 +27,8 @@ if (mysqli_num_rows($result) == 0) {
     $sql = "INSERT INTO Answers (answer)"
         . "VALUES ('" . $_POST['answer'] . "')";
     mysqli_query($conn, $sql);
+    $result = mysqli_query($conn, "SELECT MAX(answerID) as answerID
+                                   FROM Answers");
 }
 
 // Check if answer is already in QnA table
@@ -37,11 +39,11 @@ $result2 = mysqli_query($conn, "SELECT *
 // Add question to QnA table if not there, else update it (multiple answers not allowed)
 if (mysqli_num_rows($result2) == 0) {
     $sql = "INSERT INTO QnA (questionID, answerID)"
-        . "VALUES ('" . $_POST['questionID'] . "', '" . $_POST['answer'] . "')";
+        . "VALUES ('" . $_POST['questionID'] . "', '" . mysqli_fetch_array(result)['answerID'] . "')";
     mysqli_query($conn, $sql);
 } else {
     $sql = "UPDATE QnA
-            SET answerID = '" . $_POST['answer'] . "'
+            SET answerID = '" . mysqli_fetch_array(result)['answerID'] . "'
             WHERE questionID = '" . $_POST['questionID'] . "'";
     mysqli_query($conn, $sql);
 }

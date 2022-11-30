@@ -23,13 +23,13 @@ if (mysqli_query($conn, $sql)) {
 }
 
 // Select highest id
-$sql2 = "SELECT MAX(questionID) as questionID FROM FAQ";
-$result = mysqli_query($conn, $sql2);
+//$sql2 = "SELECT MAX(questionID) as questionID FROM FAQ";
+//$result = mysqli_query($conn, $sql2);
 
 // Insert empty answer into answer array with highest id
-$sql3 = "INSERT INTO Answers (questionID, answer)"
-    . "VALUES ('" . mysqli_fetch_array($result)['questionID'] . "', '')";
-mysqli_query($conn, $sql3);
+//$sql3 = "INSERT INTO Answers (questionID, answer)"
+//    . "VALUES ('" . mysqli_fetch_array($result)['questionID'] . "', '')";
+//mysqli_query($conn, $sql3);
 
 
 

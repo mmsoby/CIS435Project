@@ -16,12 +16,35 @@ if (!$conn) {
 // $sql = "INSERT INTO Answers (questionID, answer)"
 //     . "VALUES ('" . $_POST['questionID'] . "', '" . $_POST['answer'] . "')";
 //
-$sql = "UPDATE Answers
-        SET answer = '" . $_POST['answer'] . "'
-        WHERE questionID = '" . $_POST['questionID'] . "'";
 
+// Check if answer is already in database
+$result = mysqli_query($conn, "SELECT *
+                               FROM Answers
+                               WHERE answerID = '" . $_POST['answer'] . "'");
 
+// Must add answer to answer table if it is not already there
+if (mysqli_num_rows($result) == 0) {
+    $sql = "INSERT INTO Answers (answer)"
+        . "VALUES ('" . $_POST['answer'] . "')";
+    mysqli_query($conn, $sql);
+}
 
+// Check if answer is already in QnA table
+$result2 = mysqli_query($conn, "SELECT *
+                                FROM QnA
+                                WHERE questionID = '" . $_POST['questionID'] . "'");
+
+// Add question to QnA table if not there, else update it (multiple answers not allowed)
+if (mysqli_num_rows($result2) == 0) {
+    $sql = "INSERT INTO QnA (questionID, answerID)"
+        . "VALUES ('" . $_POST['questionID'] . "', '" . $_POST['answer'] . "')";
+    mysqli_query($conn, $sql);
+} else {
+    $sql = "UPDATE QnA
+            SET answerID = '" . $_POST['answer'] . "'
+            WHERE questionID = '" . $_POST['questionID'] . "'";
+    mysqli_query($conn, $sql);
+}
 
 
 if (mysqli_query($conn, $sql)) {

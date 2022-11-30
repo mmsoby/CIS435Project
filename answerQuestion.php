@@ -23,7 +23,7 @@ $result = mysqli_query($conn, "SELECT answerID
                                WHERE answerID = '" . $_POST['answer'] . "'");
 
 // Must add answer to answer table if it is not already there
-if (null == $result) {
+if (mysqli_num_rows($result) == 0) {
     $sql = "INSERT INTO Answers (answer)"
         . "VALUES ('" . $_POST['answer'] . "')";
     mysqli_query($conn, $sql);
@@ -37,14 +37,14 @@ $result2 = mysqli_query($conn, "SELECT *
                                 WHERE questionID = '" . $_POST['questionID'] . "'");
 
 // Set result4 to answerID
-if (null !== $result) {
+if (mysqli_num_rows($result0) > 0) {
     $result4 = $result;
 } else {
     $result4 = $result3;
 }
 
 // Add question to QnA table if not there, else update it (multiple answers not allowed)
-if (null == $result2) {
+if (mysqli_num_rows($result2) == 0) {
     $sql = "INSERT INTO QnA (questionID, answerID)"
         . "VALUES ('" . $_POST['questionID'] . "', '" . mysqli_fetch_array($result4)['answerID'] . "')";
     mysqli_query($conn, $sql);

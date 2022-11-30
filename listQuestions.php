@@ -16,7 +16,8 @@ $result = mysqli_query($conn, "SELECT
                                    Answers.answer AS answers
                                FROM
                                    FAQ
-                               LEFT JOIN Answers ON Answers.questionID = FAQ.questionID");
+                               LEFT JOIN QnA ON FAQ.questionID = QnA.questionID
+                               LEFT JOIN Answers ON Answers.answerID = QnA.answerID");
 
 echo "
 <table class='table table-responsive table-bordered'>

@@ -11,7 +11,12 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-$result = mysqli_query($conn, "SELECT FAQ.questionID as questionID, question, postedAt, Answers.answer as answer FROM FAQ left JOIN Answers ON Answers.questionID = FAQ.questionID;");
+$result = mysqli_query($conn, "SELECT
+                                    FAQ.questionID as questionID, question, postedAt,
+                                    Answers.answer as answer
+                               FROM FAQ
+                               LEFT JOIN QnA ON QnA.questionID = FAQ.questionID
+                               LEFT JOIN Answers ON Answers.answerID = QnA.answerID");
 
 echo "
 <table class='table table-responsive table-bordered'>

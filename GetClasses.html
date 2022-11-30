@@ -25,29 +25,22 @@
 <!--Main content-->
 <section class="bg-blue p-5 text-center">
     <div class="container bg-light" style="height:100%">
-        <h1>Get Classes</h1>
+        <h1>Get your remaining classes!</h1>
         <p class="text-start">
             Upload your unofficial transcript to get a curriculum sheet annotated showing what classes you have
             completed, what classes are in progress, and what classes you still need to complete before graduation.
+            *Computer Science Students only*
             <br><br>
             <br>
         </p>
 
-        <!--Select Major-->
-        <div id="dropdown_items" class="input-group">
-            <!--            <label class="input-group-text" for="inputGroupSelect01">Major</label>-->
-        </div>
-
         <!--Upload-->
         <div class="uploadPDF">
-
-
-            <h2>Upload PDF File :</h2>
+            <h2>Upload your unofficial transcript</h2>
             <form enctype="multipart/form-data" action="uploadPDF_fromUser.php" method="post">
                 <p>
                     <input type="hidden" name="MAX_FILE_SIZE" value="200000"/>
-                    <input type="file" name="pdfFile"/><br/>
-                    <br/>
+                    <input type="file" name="pdfFile"/>
                     <input type="submit" value="Get Classes"/>
                 </p>
             </form>

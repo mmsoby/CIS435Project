@@ -19,7 +19,7 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 //         $text = $pdf->getText();
 //         echo $text;
 // Create a new instance of the FPDI class
-$pdf = new FPDI();
+$pdf = new \setasign\Fpdi\FPDI();
 
 // Set the source PDF file
 $pdf->setSourceFile($source_file);

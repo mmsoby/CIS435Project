@@ -1,5 +1,5 @@
 <?php
-//include "alt_autoload.php-dist";
+require_once('src/autoload.php');
 
 if ( isset( $_FILES['pdfFile'] ) ) {
 	if ($_FILES['pdfFile']['type'] == "application/pdf") {
@@ -19,7 +19,28 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 //         $text = $pdf->getText();
 //         echo $text;
 
+// Create a new instance of the FPDI class
+$pdf = new FPDI();
 
+// Set the source PDF file
+$pdf->setSourceFile('path/to/pdf/file.pdf');
+
+// Import the first page of the PDF file
+$page = $pdf->importPage(1);
+
+// Set the dimensions of the imported page
+$pdf->useTemplate($page, 0, 0, 0, 0);
+
+// Extract the text from the PDF file using the FPDI library
+$text = $pdf->getPageText(1);
+
+
+// Use regular expressions or other string manipulation functions in PHP
+// to extract the specific data you need from the PDF file
+echo $text;
+
+// Clean up
+unset($pdf);
 
 
 		if (file_exists($dest_file)) {

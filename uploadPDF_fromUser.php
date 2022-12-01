@@ -1,5 +1,6 @@
 <?php
 require_once('src/autoload.php');
+use setasign\Fpdi\Fpdi;
 
 if ( isset( $_FILES['pdfFile'] ) ) {
 	if ($_FILES['pdfFile']['type'] == "application/pdf") {
@@ -19,7 +20,7 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 //         $text = $pdf->getText();
 //         echo $text;
 // Create a new instance of the FPDI class
-$pdf = new \setasign\Fpdi\FPDI();
+$pdf = new FPDI();
 
 // Set the source PDF file
 $pdf->setSourceFile($source_file);

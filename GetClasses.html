@@ -44,7 +44,8 @@
                     <input type="hidden" name="MAX_FILE_SIZE" value="200000"/>
                     <input type="file" class="btn btn-primary text-black " style="background-color:#FFCB05 !important"
                            name="pdfFile"/>
-                    <input type="submit" class="btn btn-primary text-black " style="background-color:#FFCB05 !important"
+                    <input onclick="getClasses()" type="submit" class="btn btn-primary text-black "
+                           style="background-color:#FFCB05 !important"
                            value="Get Classes"/>
                 </p>
             </form>
@@ -144,7 +145,10 @@
 
 <!--Script for reading in csv file data-->
 <script>
-
+    function getClasses() {
+        var result = $.csv.toArray("http://betterdegreeworks.fall2022web.tech/classes.csv");
+        console.log(result);
+    }
 </script>
 
 

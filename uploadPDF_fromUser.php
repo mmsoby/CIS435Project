@@ -18,12 +18,11 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 //         $pdf    = $parser->parseFile($source_file);
 //         $text = $pdf->getText();
 //         echo $text;
-
 // Create a new instance of the FPDI class
 $pdf = new FPDI();
 
 // Set the source PDF file
-$pdf->setSourceFile('path/to/pdf/file.pdf');
+$pdf->setSourceFile($source_file);
 
 // Import the first page of the PDF file
 $page = $pdf->importPage(1);

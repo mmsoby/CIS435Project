@@ -28,6 +28,9 @@ $pdf = new FPDI();
 // Set the source PDF file
 $pdf->setSourceFile($source_file);
 
+// Determine the number of pages in the PDF file
+$pageCount = $pdf->setSourceFile($source_file);
+
 // Initialize the $text variable to an empty string
 $text = '';
 

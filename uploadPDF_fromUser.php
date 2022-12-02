@@ -23,6 +23,9 @@ if ( isset( $_FILES['pdfFile'] ) ) {
         $pdf    = $parser->parseFile($source_file);
         $text = $pdf->getText();
 
+        echo $text;
+        echo '<br>';
+
         // Define the regex pattern
         $pattern = '/^CIS\S+\d+$/m';
 

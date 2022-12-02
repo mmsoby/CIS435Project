@@ -46,6 +46,8 @@ for ($i = 1; $i <= $pageCount; $i++) {
     // Set the dimensions of the imported page to the default size
     $pdf->useTemplate($page);
 
+    echo $i;
+
     // Extract the text from the current page of the PDF file
     $pageText = $pdf->getPageText($i);
 

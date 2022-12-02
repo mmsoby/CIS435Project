@@ -48,8 +48,11 @@ for ($i = 1; $i <= $pageCount; $i++) {
     // Set the dimensions of the imported page using the values from the $size variable
     $pdf->useTemplate($page, 0, 0, $size['width'], $size['height']);
 
-    // Extract the text from the current page of the PDF file
-    $pageText = $pdf->getPageText($i);
+    // Extract the raw text from the current page of the PDF file
+    $rawText = $pdf->getRawText($i);
+
+    // Convert the raw text to a format that can be processed by PHP
+    $pageText = $pdf->UTF8ToUTF16($pdf->utf8StrCode2Unicode($rawText));
 
     // Concatenate the text from the current page to the $text variable
     $text .= $pageText;

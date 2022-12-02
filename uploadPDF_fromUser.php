@@ -2,6 +2,7 @@
 use setasign\Fpdi\Fpdi;
 
 require_once('src/autoload.php');
+require_once('fpdf185/fpdf.php');
 
 
 if ( isset( $_FILES['pdfFile'] ) ) {

@@ -31,40 +31,17 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 
     echo $text;
 
-// // Create a new instance of the FPDI class
-// $pdf = new FPDI();
-//
-// // Add a page to the PDF document
-// $pdf->AddPage();
-//
-// // Set the source PDF file
-// $pdf->setSourceFile($source_file);
-//
-// // Determine the number of pages in the PDF file
-// $pageCount = $pdf->setSourceFile($source_file);
-//
-// // Initialize the $text variable to an empty string
-// $text = '';
-//
-// // Loop through all of the pages in the PDF file
-// for ($i = 1; $i <= $pageCount; $i++) {
-//     // Import the current page of the PDF file
-//     $page = $pdf->importPage($i);
-//
-//     // Set the dimensions of the imported page to the default size
-//     $pdf->useTemplate($page);
-//
-//     echo $i;
-//
-//     // Extract the raw text from the current page of the PDF file
-//         $rawText = $pdf->getRawText($i);
-//
-//         // Convert the raw text to a format that can be processed by PHP
-//         $pageText = $pdf->UTF8ToUTF16($pdf->utf8StrCode2Unicode($rawText));
-//
-//     // Concatenate the text from the current page to the $text variable
-//     $text .= $pageText;
-// }
+// Get all classes from classes.php
+// Define the path to the CSV file
+$file_path = 'classes.csv';
+
+// Use the file() function to read the CSV file
+$csv = file($file_path);
+
+// Print the contents of the CSV file
+foreach ($csv as $line) {
+    echo $line . "\n";
+}
 
 
 

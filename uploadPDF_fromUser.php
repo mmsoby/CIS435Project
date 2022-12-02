@@ -22,17 +22,19 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 
     echo $text;
 
-// Get all classes from classes.php
-// Define the path to the CSV file
-$file_path = 'classes.csv';
+    // Get all classes from classes.php
+    // Define the path to the CSV file
+    $file_path = 'classes.csv';
 
-// Use the file() function to read the CSV file
-$csv = file($file_path);
+    // Use the file() function to read the CSV file
+    $csv = file($file_path);
 
-// Print the contents of the CSV file
-foreach ($csv as $line) {
-    echo $line . "\n";
-}
+    // Print the contents of the CSV file
+    foreach ($csv as $line) {
+        echo $line . "\n";
+    }
+    // I think over here is where we can start to do the bulk of the logic, involving figuring out what classes have
+    // been taken and what classes are left to take. I'm not sure how to do this yet, but I think it's possible.
 }
 
 //header("Location: GetClasses.html");

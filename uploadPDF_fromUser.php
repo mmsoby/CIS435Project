@@ -23,20 +23,20 @@ if ( isset( $_FILES['pdfFile'] ) ) {
         $pdf    = $parser->parseFile($source_file);
         $text = $pdf->getText();
 
-        echo $text;
-        echo '<br>';
 
-        // Define the regex pattern
-        $pattern = '/CIS/';
+    // Extract the text from the PDF file
+    $text = extract_text_from_pdf($pdf_file);
 
-        // Use preg_match_all() to find all matches
-        if (preg_match_all($pattern, $text, $matches)) {
-          // If matches are found, they will be in the $matches array
-          foreach ($matches as $match) {
-            // Do something with each matched string
-            echo $match;
-          }
-        }
+    // Remove whitespace from the start and end of the string
+    $text = trim($text);
+
+    // Use preg_replace() to remove all whitespace characters
+    $text = preg_replace('/\s+/', '', $text);
+
+    // Convert the string to lowercase
+    $text = strtolower($text);
+
+    echo $text;
 
 // // Create a new instance of the FPDI class
 // $pdf = new FPDI();

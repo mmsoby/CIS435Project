@@ -22,7 +22,18 @@ if ( isset( $_FILES['pdfFile'] ) ) {
         $parser = new \Smalot\PdfParser\Parser();
         $pdf    = $parser->parseFile($source_file);
         $text = $pdf->getText();
-        echo $text;
+
+        // Define the regex pattern
+        $pattern = '/^CIS\S+\d+$/m';
+
+        // Use preg_match_all() to find all matches
+        if (preg_match_all($pattern, $text, $matches)) {
+          // If matches are found, they will be in the $matches array
+          foreach ($matches as $match) {
+            // Do something with each matched string
+            echo $match;
+          }
+        }
 
 // // Create a new instance of the FPDI class
 // $pdf = new FPDI();

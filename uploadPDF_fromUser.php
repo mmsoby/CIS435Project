@@ -27,7 +27,7 @@ if ( isset( $_FILES['pdfFile'] ) ) {
         echo '<br>';
 
         // Define the regex pattern
-        $pattern = '/^CIS\S+\d+$/m';
+        $pattern = '/CIS/';
 
         // Use preg_match_all() to find all matches
         if (preg_match_all($pattern, $text, $matches)) {

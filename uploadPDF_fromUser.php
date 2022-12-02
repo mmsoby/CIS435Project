@@ -63,10 +63,10 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 
 // Use regular expressions or other string manipulation functions in PHP
 // to extract the specific data you need from the PDF file
-echo $text;
-
-// Clean up
-unset($pdf);
+// echo $text;
+//
+// // Clean up
+// unset($pdf);
 
 
 		if (file_exists($dest_file)) {

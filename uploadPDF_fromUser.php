@@ -28,11 +28,27 @@ $pdf = new FPDI();
 // Set the source PDF file
 $pdf->setSourceFile($source_file);
 
-// Import the first page of the PDF file
-$page = $pdf->importPage(1);
+// Initialize the $text variable to an empty string
+$text = '';
 
-// Set the dimensions of the imported page
-$pdf->useTemplate($page, 0, 0, 0, 0);
+// Loop through all of the pages in the PDF file
+for ($i = 1; $i <= $pageCount; $i++) {
+    // Import the current page of the PDF file
+    $page = $pdf->importPage($i);
+
+    // Determine the dimensions of the imported page
+    $size = $pdf->getTemplateSize($page);
+
+    // Set the dimensions of the imported page using the values from the $size variable
+    $pdf->useTemplate($page, 0, 0, $size['width'], $size['height']);
+
+    // Extract the text from the current page of the PDF file
+    $pageText = $pdf->getPageText($i);
+
+    // Concatenate the text from the current page to the $text variable
+    $text .= $pageText;
+}
+
 
 // Extract the text from the PDF file using the FPDI library
 $text = $pdf->getPageText(1);

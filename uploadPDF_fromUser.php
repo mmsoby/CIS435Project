@@ -26,9 +26,6 @@ if ( isset( $_FILES['pdfFile'] ) ) {
     // Remove whitespace from the start and end of the string
     $text = trim($text);
 
-    // Use preg_replace() to remove all whitespace characters
-    $text = preg_replace('/\s+/', '', $text);
-
     // Convert the string to lowercase
     $text = strtolower($text);
 

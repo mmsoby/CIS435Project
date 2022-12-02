@@ -23,10 +23,6 @@ if ( isset( $_FILES['pdfFile'] ) ) {
         $pdf    = $parser->parseFile($source_file);
         $text = $pdf->getText();
 
-
-    // Extract the text from the PDF file
-    $text = extract_text_from_pdf($pdf_file);
-
     // Remove whitespace from the start and end of the string
     $text = trim($text);
 

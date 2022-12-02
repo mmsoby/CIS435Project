@@ -3,7 +3,7 @@ use setasign\Fpdi\Fpdi;
 
 require_once('src/autoload.php');
 require_once('fpdf185/fpdf.php');
-require_once('alt_autoload.php-dist')
+require_once('alt_autoload.php-dist');
 
 
 if ( isset( $_FILES['pdfFile'] ) ) {

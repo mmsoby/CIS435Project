@@ -1,6 +1,8 @@
 <?php
-require_once('src/autoload.php');
 use setasign\Fpdi\Fpdi;
+
+require_once('src/autoload.php');
+
 
 if ( isset( $_FILES['pdfFile'] ) ) {
 	if ($_FILES['pdfFile']['type'] == "application/pdf") {

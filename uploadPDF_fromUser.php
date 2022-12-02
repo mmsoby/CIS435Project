@@ -25,6 +25,9 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 // Create a new instance of the FPDI class
 $pdf = new FPDI();
 
+// Add a page to the PDF document
+$pdf->AddPage();
+
 // Set the source PDF file
 $pdf->setSourceFile($source_file);
 

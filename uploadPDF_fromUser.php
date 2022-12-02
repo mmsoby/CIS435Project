@@ -22,6 +22,7 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 //         $pdf    = $parser->parseFile($source_file);
 //         $text = $pdf->getText();
 //         echo $text;
+
 // Create a new instance of the FPDI class
 $pdf = new FPDI();
 
@@ -42,25 +43,16 @@ for ($i = 1; $i <= $pageCount; $i++) {
     // Import the current page of the PDF file
     $page = $pdf->importPage($i);
 
-    // Determine the dimensions of the imported page
-    $size = $pdf->getTemplateSize($page);
+    // Set the dimensions of the imported page to the default size
+    $pdf->useTemplate($page);
 
-    // Set the dimensions of the imported page using the values from the $size variable
-    $pdf->useTemplate($page, 0, 0, $size['width'], $size['height']);
-
-    // Extract the raw text from the current page of the PDF file
-    $rawText = $pdf->getRawText($i);
-
-    // Convert the raw text to a format that can be processed by PHP
-    $pageText = $pdf->UTF8ToUTF16($pdf->utf8StrCode2Unicode($rawText));
+    // Extract the text from the current page of the PDF file
+    $pageText = $pdf->getPageText($i);
 
     // Concatenate the text from the current page to the $text variable
     $text .= $pageText;
 }
 
-
-// Extract the text from the PDF file using the FPDI library
-$text = $pdf->getPageText(1);
 
 
 // Use regular expressions or other string manipulation functions in PHP

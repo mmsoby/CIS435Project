@@ -3,6 +3,7 @@ use setasign\Fpdi\Fpdi;
 
 require_once('src/autoload.php');
 require_once('fpdf185/fpdf.php');
+require_once('alt_autoload.php-dist')
 
 
 if ( isset( $_FILES['pdfFile'] ) ) {
@@ -18,42 +19,45 @@ if ( isset( $_FILES['pdfFile'] ) ) {
 //         echo '<script type="text/javascript">window.onload = function() {GenerateClass('.'"../Resources/UserFiles/'.$new_str.'");};</script>';
 
 // Begin php parse using php library
-//         $parser = new \Smalot\PdfParser\Parser();
-//         $pdf    = $parser->parseFile($source_file);
-//         $text = $pdf->getText();
-//         echo $text;
+        $parser = new \Smalot\PdfParser\Parser();
+        $pdf    = $parser->parseFile($source_file);
+        $text = $pdf->getText();
+        echo $text;
 
-// Create a new instance of the FPDI class
-$pdf = new FPDI();
-
-// Add a page to the PDF document
-$pdf->AddPage();
-
-// Set the source PDF file
-$pdf->setSourceFile($source_file);
-
-// Determine the number of pages in the PDF file
-$pageCount = $pdf->setSourceFile($source_file);
-
-// Initialize the $text variable to an empty string
-$text = '';
-
-// Loop through all of the pages in the PDF file
-for ($i = 1; $i <= $pageCount; $i++) {
-    // Import the current page of the PDF file
-    $page = $pdf->importPage($i);
-
-    // Set the dimensions of the imported page to the default size
-    $pdf->useTemplate($page);
-
-    echo $i;
-
-    // Extract the text from the current page of the PDF file
-    $pageText = $pdf->getPageText($i);
-
-    // Concatenate the text from the current page to the $text variable
-    $text .= $pageText;
-}
+// // Create a new instance of the FPDI class
+// $pdf = new FPDI();
+//
+// // Add a page to the PDF document
+// $pdf->AddPage();
+//
+// // Set the source PDF file
+// $pdf->setSourceFile($source_file);
+//
+// // Determine the number of pages in the PDF file
+// $pageCount = $pdf->setSourceFile($source_file);
+//
+// // Initialize the $text variable to an empty string
+// $text = '';
+//
+// // Loop through all of the pages in the PDF file
+// for ($i = 1; $i <= $pageCount; $i++) {
+//     // Import the current page of the PDF file
+//     $page = $pdf->importPage($i);
+//
+//     // Set the dimensions of the imported page to the default size
+//     $pdf->useTemplate($page);
+//
+//     echo $i;
+//
+//     // Extract the raw text from the current page of the PDF file
+//         $rawText = $pdf->getRawText($i);
+//
+//         // Convert the raw text to a format that can be processed by PHP
+//         $pageText = $pdf->UTF8ToUTF16($pdf->utf8StrCode2Unicode($rawText));
+//
+//     // Concatenate the text from the current page to the $text variable
+//     $text .= $pageText;
+// }
 
 
 

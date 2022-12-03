@@ -1,25 +1,59 @@
 <?php
-// Class to represent a course
-class Course {
-  public $name;
-  public $credits;
-  public $prerequisites;
 
-  public function __construct($name, $credits, $prerequisites) {
-    $this->name = $name;
-    $this->credits = $credits;
-    $this->prerequisites = $prerequisites;
-  }
+// Class to represent a course
+class Course
+{
+    public $name;
+    public $credits;
+    public $prerequisites;
+
+    public function __construct($name, $credits, $prerequisites)
+    {
+        $this->name = $name;
+        $this->credits = $credits;
+        $this->prerequisites = $prerequisites;
+    }
 }
 
-class Section {
-  public $credits;
-  public $requirements;
+class Section
+{
+    public $credits;
+    public $requirements;
 
-  public function __construct($credits, $requirements) {
-    $this->credits = $credits;
-    $this->requirements = $requirements;
-  }
+    public function __construct($credits, $requirements)
+    {
+        $this->credits = $credits;
+        $this->requirements = $requirements;
+    }
+
+    public function iTookTheseCourses($text)
+    {
+        foreach ($this->requirements as $requirement) {
+            foreach ($requirement as $row) {
+                foreach ($row as $courseSet) {
+                    foreach ($courseSet as $course) {
+                        if (strpos($text, $course->name) !== false) {
+                            // Course found, now remove it from the requirements
+                            $courseSet->remove($course);
+                        }
+                        if ($courseSet->isEmpty()) {
+                            // Course set is empty, remove it from the row
+                            $row->remove($courseSet);
+                        }
+                        if ($row->isEmpty()) {
+                            // Row is empty, delete the requirement variable
+                            unset($requirement);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public function isComplete(): bool
+    {
+        return $this->credits == 0;
+    }
 }
 
 // Make a section with the requirements as an array of courses
@@ -45,4 +79,3 @@ $ns = new Section(8,
 $sections = array($wc, $ns);
 
 
-?>

@@ -39,7 +39,7 @@ class Section
         if ($this->inversePolarity) {
             //Use a foreach loop to print the requirements
             foreach ($this->requirements as $requirement) {
-                echo "Requirement: " . $requirement . "<br>";
+                echo "Requirement: " . $requirement->name . "<br>";
             }
         } else {
             //Quadruple foreach loop to print the requirements

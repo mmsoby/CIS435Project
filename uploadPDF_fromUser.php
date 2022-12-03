@@ -3,7 +3,28 @@ require_once('alt_autoload.php-dist');
 include('course_reqs.php');
 include('generatePDF.php');
 
+function makeSemestersOutOfCourses($courses): array
+{
+    $semesters = array();
+    $semester = new Semester();
+    $semester->addCourse($courses[0]);
+    $semesters[] = $semester;
+    for ($i = 1; $i < count($courses); $i++) {
+        $course = $courses[$i];
+        $semester = $semesters[count($semesters) - 1];
+        if ($semester->canAddCourse($course)) {
+            $semester->addCourse($course);
+        } else {
+            $semester = new Semester();
+            $semester->addCourse($course);
+            $semesters[] = $semester;
+        }
+    }
+    return $semesters;
+}
+
 if (isset($_FILES['pdfFile'])) {
+    error_reporting(E_ERROR | E_PARSE);
     $source_file = $_FILES['pdfFile']['tmp_name'];
 
     // Begin php parse using php library
@@ -21,6 +42,7 @@ if (isset($_FILES['pdfFile'])) {
     $text = substr($text, 0, strpos($text, "course(s) in progressterm"));
 
     global $sections;
+    ob_start();
 
     // Iterate through the sections
     foreach ($sections as $section) {
@@ -32,49 +54,27 @@ if (isset($_FILES['pdfFile'])) {
         } else {
             echo "Section incomplete";
         }
-
     }
+    ob_end_clean();
+    ob_start();
 
     //Now that the sections are updated and contain the classes that can be taken...
     //print all the sections and their requirements
+    $final_courses = array();
     foreach ($sections as $section) {
         // Iterate through the requirements
-        $section->printCurrentState();
+        $final_courses = array_merge($final_courses, $section->getRemainingCourses());
     }
 
-
     // We now have a list of courses
-    $final_courses = array(
-        array(//First semester
-            new Course('cis285', 3, array()),
-            new Course('cis316', 3, array()),
-            new Course('cis376', 4, array()),
-            new Course('cis381', 3, array()),
-            new Course('cis387', 4, array()),
-            new Course('cis400', 4, array())
-        ),
-        array(//Second semester
-            new Course('cis474', 3, array()),
-            new Course('cis476', 3, array()),
-            new Course('cis479', 3, array()),
-            new Course('cis481', 3, array()),
-            new Course('cis487', 3, array()),
-            new Course('cis488', 3, array()),
-            new Course('ccm404', 3, array())
-        ),
-        array(//Third semester
-            new Course('ccm472', 3, array()),
-            new Course('ccm473', 3, array()),
-            new Course('engr399', 1, array()),
-            new Course('engr400', 3, array()),
-            new Course('engr492', 1, array()),
-            new Course('engr493', 1, array()),
-            new Course('ent400', 3, array())
-        ),
-    );
+    $semesters = makeSemestersOutOfCourses($final_courses);
+
+    $output = ob_get_clean();
+    echo $output;
+
 
     // Generate the PDF
-    generatePDF($final_courses);
+    generatePDF($semesters);
 }
 
 //header("Location: GetClasses.html");

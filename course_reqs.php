@@ -15,6 +15,27 @@ class Course
     }
 }
 
+class Semester
+{
+    public $courses;
+    public $credits;
+
+    public function __construct()
+    {
+    }
+
+    public function addCourse($course)
+    {
+        $this->courses[] = $course;
+        $this->credits += $course->credits;
+    }
+
+    public function canAddCourse($course)
+    {
+        return $this->credits + $course->credits <= 18;
+    }
+}
+
 class Section
 {
     public $credits;
@@ -33,27 +54,29 @@ class Section
         $this->inversePolarity = true;
     }
 
-    public function printCurrentState()
+    public function getRemainingCourses()
     {
         echo "Credits needed: " . $this->credits . "<br>";
+        $remaining_courses = array();
+        // Iterate through the requirements using a quadruple foreach loop
         if ($this->inversePolarity) {
-            //Use a foreach loop to print the requirements
-            foreach ($this->requirements as $requirement) {
-                echo "Requirement: " . $requirement->name . "<br>";
+            foreach ($this->requirements as $course) {
+                //Merge the arrays
+                $remaining_courses[] = $course;
             }
         } else {
-            //Quadruple foreach loop to print the requirements
             foreach ($this->requirements as $requirement) {
                 foreach ($requirement as $subRequirement) {
                     foreach ($subRequirement as $subSubRequirement) {
                         foreach ($subSubRequirement as $subSubSubRequirement) {
                             echo "Optional course for you to take: " . $subSubSubRequirement->name . "<br>";
+                            $remaining_courses[] = $subSubSubRequirement;
                         }
                     }
                 }
             }
         }
-
+        return $remaining_courses;
     }
 
     private function tookTheseRegularPolarity($text)

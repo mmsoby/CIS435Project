@@ -28,39 +28,6 @@ class Section
 
     public function iTookTheseCourses($text)
     {
-//        // Iterate over the $requirements array
-//        foreach ($this->requirements as $key1 => $row) {
-//            // Iterate over the $row array
-//            foreach ($row as $key2 => $courseSet) {
-//                // Iterate over the $courseSet array
-//                foreach ($courseSet as $key3 => $course) {
-//                    // Check if the name of the $course object appears in the $text variable
-//                    if (strpos($text, $course->name) !== false) {
-//                        // unset the $course object from the $courseSet array
-//                        $this->credits -= $course->credits;
-//                        // Echo then unset
-//                        echo "Deleting: " . $course->name . " " . $course->credits . " " . $course->prerequisites;
-//                        unset($this->requirements[$key1][$key2][$key3]);
-//                    } else {
-//                        echo "Not deleting: " . $course->name . " " . $course->credits . " " . $course->prerequisites;
-//                    }
-//                }
-//                // Check if the $courseSet array is empty
-//                if (empty($courseSet)) {
-//                    // unset the $courseSet array from the $row array
-//                    unset($this->requirements[$key1][$key2]);
-//                }
-//            }
-//            // Check if the $row array is empty
-//            if (empty($row)) {
-//                // delete the entire $requirements array
-//                unset($this->requirements[$key1]);
-//                $this->credits = 0;
-//                return;
-//            }
-//        }
-
-
         // Iterate over the $requirements array
         foreach ($this->requirements as $key1 => $row) {
             // Iterate over the $requirement array
@@ -68,6 +35,7 @@ class Section
                 // Iterate over the $row array
                 foreach ($column as $key3 => $thirdDimension) {
                     // Iterate over the $courseSet array
+                    $delete_column = false;
                     foreach ($thirdDimension as $key4 => $course) {
                         // Check if the name of the $course object appears in the $text variable
                         if (strpos($text, $course->name) !== false) {
@@ -75,29 +43,35 @@ class Section
                             $this->credits -= $course->credits;
                             // Echo then mark the column for deletion
                             echo "Deleting: " . $course->name . " " . $course->credits . " " . $course->prerequisites;
-                            $this->requirements[$key1][$key2][$key3][$key4] = null;
+                            $delete_column = true;
                         }
                     }
                     // Check if the $thirdDimension array contains null
-                    if (in_array(null, $thirdDimension)) {
+                    if ($delete_column) {
                         //Delete the column
+                        echo "Deleting column";
                         unset($this->requirements[$key1][$key2]);
                     }
                 }
             }
-            // Check if the $row array is empty
-            if (empty($row)) {
-                // delete the entire $requirements array
-                unset($this->requirements);
-                $this->credits = 0;
-                return;
+            // If at least one row is empty, then all requirements are met
+            if (empty($this->requirements[$key1])) {
+                //Mark the row for deletion
+                echo "Deleting row";
+                $this->requirements[$key1] = null;
             }
+        }
+        // Check if the $row array is empty
+        if (in_array(null, $this->requirements) && $this->credits <= 0) {
+            // delete the entire $requirements array
+            unset($this->requirements);
+            echo "Deleted entire reqs";
         }
     }
 
     public function isComplete(): bool
     {
-        return $this->credits == 0;
+        return $this->credits == 0 && empty($this->requirements);
     }
 }
 
@@ -232,36 +206,171 @@ $ms = new Section(18,
     array(
         //row - One row must get deleted to complete the section
         array(
-            //column - can take any of these options
+            //column - must take all columns to complete the row
             array(
-                //thirdDimension - must take all in this dimension
+                //thirdDimension - finish one of these to complete the column
                 array(
                     //courses - can take just one
                     new Course('math115', 4, array())
-                ),
+                )
+            ),
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
                 array(
                     //courses - can take just one
                     new Course('math116', 4, array())
-                ),
+                )
+            ),
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
                 array(
                     //courses - can take just one
                     new Course('cis275', 4, array())
-                ),
+                )
+            ),
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
                 array(
                     //courses - can take just one
-                    new Course('imse317', 4, array())
-                ),
+                    new Course('imse317', 3, array())
+                )
+            ),
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
                 array(
                     //courses - can take just one
-                    new Course('math227', 4, array())
+                    new Course('math227', 3, array())
+                )
+            )
+        ),
+    )
+);
+
+// Make a section with the requirements as an array of courses for cis core
+$cis_core = new Section(28,
+    array(
+        //row - One row must get deleted to complete the section
+        array(
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    //courses - can take just one
+                    new Course('cis150', 4, array())
+                )
+            ),
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    //courses - can take just one
+                    new Course('cis200', 4, array())
+                )
+            ),
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    //courses - can take just one
+                    new Course('cis310', 4, array())
+                )
+            ),
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    //courses - can take just one
+                    new Course('cis350', 4, array())
+                )
+            ),
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    //courses - can take just one
+                    new Course('cis375', 4, array())
+                )
+            ),
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    //courses - can take just one
+                    new Course('cis427', 4, array())
+                )
+            ),
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    //courses - can take just one
+                    new Course('cis450', 4, array())
+                )
+            )
+        ),
+    )
+);
+
+// Make a section with the requirements as an array of courses for the cs concentration
+$cs = new Section(41,
+    array(
+        //row - One row must get deleted to complete the section
+        array(
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    //courses - can take just one
+                    new Course('science-course', 4, array())
+                )
+            ),
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    //courses - can take just one
+                    new Course('cis306', 4, array())
+                )
+            ),
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    //courses - can take just one
+                    new Course('cis296', 3, array()),
+                    new Course('cis297', 3, array()),
+                    new Course('cis298', 3, array()),
+                )
+            ),
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    //courses - can take just one
+                    new Course('cis405', 4, array()),
+                    new Course('cis479', 4, array()),
+                )
+            ),
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    //courses - can take just one
+                    new Course('cis479', 4, array()),
+                    new Course('engr400', 4, array()),
+                    new Course('ent400', 4, array()),
+                    new Course('imse421', 4, array())
                 )
             ),
         ),
     )
 );
 
-
 // Global variable to hold the list of sections
-$sections = array($wc, $ns);
+$sections = array($wc, $ns, $ms, $cis_core, $cs);
 
 

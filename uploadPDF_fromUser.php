@@ -66,21 +66,22 @@ if (isset($_FILES['pdfFile'])) {
         $final_courses = array_merge($final_courses, $section->getRemainingCourses());
     }
 
+
     // We now have a list of semesters
     $semesters = makeSemestersOutOfCourses($final_courses);
 
     //Print the semesters
-    foreach ($semesters as $semester) {
-        echo $semester;
-        echo "<br>";
-    }
+//    foreach ($semesters as $semester) {
+//        echo $semester;
+//        echo "<br>";
+//    }
 
     $output = ob_get_clean();
     echo $output;
 
 
-//     Generate the PDF
-    generatePDF($semesters);
+    //Generate the PDF
+    //generatePDF($semesters);
 }
 
 //header("Location: GetClasses.html");

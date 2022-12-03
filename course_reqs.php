@@ -64,7 +64,7 @@ class Section
         $this->inversePolarity = true;
     }
 
-    public function getRemainingCourses()
+    public function getRemainingCourses(): array
     {
         //echo "Credits needed: " . $this->credits . "<br>";
         $remaining_courses = array();
@@ -72,19 +72,35 @@ class Section
         if ($this->inversePolarity) {
             foreach ($this->requirements as $course) {
                 //Merge the arrays
+                if ($this->credits <= 0) {
+                    break;
+                }
+                $this->credits -= $course->credits;
                 $remaining_courses[] = $course;
+
+                echo "Optional individual course for you to take: " . $course->name . "<br>";
             }
         } else {
-            foreach ($this->requirements as $requirement) {
-                foreach ($requirement as $subRequirement) {
-                    foreach ($subRequirement as $subSubRequirement) {
-                        foreach ($subSubRequirement as $subSubSubRequirement) {
-                            echo "Optional course for you to take: " . $subSubSubRequirement->name . "<br>";
-                            $remaining_courses[] = $subSubSubRequirement;
-                        }
+            //Get the shortest requirement
+            $shortest = null;
+            foreach ($this->requirements as $column) {
+                //Get the shortest subRequirement
+                if ($shortest == null) {
+                    $shortest = $column;
+                } else {
+                    if (count($column) < count($shortest)) {
+                        $shortest = $column;
                     }
                 }
             }
+            //TODO: Figure out how to handle this adding and printing part
+            //Make sure every one of the subSubRequirements is satisfied
+            foreach ($shortest as $subSubRequirement) {
+                echo "Optional course for you to take:" . $subSubRequirement[0][0]->name . "<br>";
+                $remaining_courses[] = $subSubRequirement[0][0];
+            }
+
+
         }
         return $remaining_courses;
     }

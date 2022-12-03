@@ -25,12 +25,6 @@ if ( isset( $_FILES['pdfFile'] ) ) {
         echo $section;
     }
 
-
-
-
-
-
-
 }
 
 //header("Location: GetClasses.html");

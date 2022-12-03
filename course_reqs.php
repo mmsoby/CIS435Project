@@ -26,7 +26,7 @@ class Section {
 //wc is Written Communication
 $wc = new Section(6,
     array(
-        array(array(new Course('comp105', 3, array())), array(new Course('comp270', 3, array()))
+        array(array(new Course('comp105', 3, array())), array(new Course('comp270', 3, array())))
     )
 );
 
@@ -34,7 +34,7 @@ $wc = new Section(6,
 $ns = new Section(8,
     array(
         array(array(new Course('biol130', 4, array())), array(new Course('biol140', 4, array()))),
-        array(array(new Course('chem144', 4, array()),new Course('chem134', 4, array())), array(new Course('chem136', 4, array()))),
+        array(array(new Course('chem144', 4, array()), new Course('chem134', 4, array())), array(new Course('chem136', 4, array()))),
         array(array(new Course('geol118', 4, array())), array(new Course('geol218', 4, array()))),
         array(array(new Course('phys125', 4, array())), array(new Course('phys126', 4, array()))),
         array(array(new Course('phys150', 4, array())), array(new Course('phys151', 4, array()))),

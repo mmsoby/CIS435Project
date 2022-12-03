@@ -1,8 +1,7 @@
 <?php
-require_once('src/autoload.php');
-require_once('fpdf185/fpdf.php');
 require_once('alt_autoload.php-dist');
 include('course_reqs.php');
+include('generatePDF.php');
 
 if (isset($_FILES['pdfFile'])) {
     $source_file = $_FILES['pdfFile']['tmp_name'];
@@ -43,6 +42,39 @@ if (isset($_FILES['pdfFile'])) {
         $section->printCurrentState();
     }
 
+
+    // We now have a list of courses
+    $final_courses = array(
+        array(//First semester
+            new Course('cis285', 3, array()),
+            new Course('cis316', 3, array()),
+            new Course('cis376', 4, array()),
+            new Course('cis381', 3, array()),
+            new Course('cis387', 4, array()),
+            new Course('cis400', 4, array())
+        ),
+        array(//Second semester
+            new Course('cis474', 3, array()),
+            new Course('cis476', 3, array()),
+            new Course('cis479', 3, array()),
+            new Course('cis481', 3, array()),
+            new Course('cis487', 3, array()),
+            new Course('cis488', 3, array()),
+            new Course('ccm404', 3, array())
+        ),
+        array(//Third semester
+            new Course('ccm472', 3, array()),
+            new Course('ccm473', 3, array()),
+            new Course('engr399', 1, array()),
+            new Course('engr400', 3, array()),
+            new Course('engr492', 1, array()),
+            new Course('engr493', 1, array()),
+            new Course('ent400', 3, array())
+        ),
+    );
+
+    // Generate the PDF
+    generatePDF($final_courses);
 }
 
 //header("Location: GetClasses.html");

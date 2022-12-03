@@ -34,6 +34,16 @@ class Semester
     {
         return $this->credits + $course->credits <= 18;
     }
+
+    //Define tostring
+    public function __toString()
+    {
+        $output = "semester: ";
+        foreach ($this->courses as $course) {
+            $output .= $course->name . " ";
+        }
+        return $output;
+    }
 }
 
 class Section
@@ -56,7 +66,7 @@ class Section
 
     public function getRemainingCourses()
     {
-        echo "Credits needed: " . $this->credits . "<br>";
+        //echo "Credits needed: " . $this->credits . "<br>";
         $remaining_courses = array();
         // Iterate through the requirements using a quadruple foreach loop
         if ($this->inversePolarity) {

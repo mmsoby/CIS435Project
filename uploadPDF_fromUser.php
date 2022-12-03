@@ -21,7 +21,7 @@ if ( isset( $_FILES['pdfFile'] ) ) {
     $text = strtolower($text);
 
     //text now contains the text of the pdf
-    for($sections as $section){
+    foreach($sections as $section){
         echo $section;
     }
 

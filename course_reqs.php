@@ -18,6 +18,7 @@ class Course
 class Section
 {
     public $credits;
+    public $inversePolarity = false;
     public $requirements;
 
     public function __construct($credits, $requirements)
@@ -26,7 +27,13 @@ class Section
         $this->requirements = $requirements;
     }
 
-    public function iTookTheseCourses($text)
+    // Make function to set polarity
+    public function setInversePolarity()
+    {
+        $this->inversePolarity = true;
+    }
+
+    private function tookTheseRegularPolarity($text)
     {
         // Iterate over the $requirements array
         foreach ($this->requirements as $key1 => $row) {
@@ -62,10 +69,47 @@ class Section
             }
         }
         // Check if the $row array is empty
+        echo $this->credits;
         if (in_array(null, $this->requirements) && $this->credits <= 0) {
             // delete the entire $requirements array
             unset($this->requirements);
             echo "Deleted entire reqs";
+        }
+    }
+
+    private function tookTheseInversePolarity($text)
+    {
+        // Iterate over the $requirements array
+        foreach ($this->requirements as $key1 => $row) {
+            // Iterate over the $requirement array
+            foreach ($row as $key2 => $column) {
+                // Iterate over the $row array
+                foreach ($column as $key3 => $thirdDimension) {
+                    // Iterate over the $courseSet array
+                    foreach ($thirdDimension as $key4 => $course) {
+                        if (strpos($text, $course->name) !== false) {
+                            $this->credits -= $course->credits;
+                            // Echo then delete the course
+                            echo "Deleting: " . $course->name . " " . $course->credits . " " . $course->prerequisites;
+                            unset($this->requirements[$key1][$key2][$key3][$key4]);
+                        }
+                    }
+                }
+            }
+        }
+        if ($this->credits <= 0) {
+            // delete the entire $requirements array
+            unset($this->requirements);
+            echo "Deleted entire reqs";
+        }
+    }
+
+    public function iTookTheseCourses($text)
+    {
+        if ($this->inversePolarity) {
+            $this->tookTheseInversePolarity($text);
+        } else {
+            $this->tookTheseRegularPolarity($text);
         }
     }
 
@@ -316,7 +360,7 @@ $cis_core = new Section(28,
 );
 
 // Make a section with the requirements as an array of courses for the cs concentration
-$cs = new Section(41,
+$cs = new Section(20,
     array(
         //row - One row must get deleted to complete the section
         array(
@@ -370,7 +414,83 @@ $cs = new Section(41,
     )
 );
 
+// Make a section with the requirements as an array of courses for the cs capstone
+$cs_capstone = new Section(4,
+    array(
+        //row - One row must get deleted to complete the section
+        array(
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    //courses - can take just one
+                    new Course('cis4951', 2, array())
+                )
+            ),
+            //column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    //courses - can take just one
+                    new Course('cis4952', 2, array())
+                )
+            )
+        ),
+    )
+);
+
+// Make a section with the requirements as an array of courses for the cs electives
+$cs_electives = new Section(21,
+    array(
+        //row - One row must get deleted to complete the section
+        array(
+            //column - must take just enough columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    array(
+                        new Course('cis285', 3, array()),
+                        new Course('cis316', 3, array()),
+                        new Course('cis376', 4, array()),
+                        new Course('cis381', 3, array()),
+                        new Course('cis387', 4, array()),
+                        new Course('cis400', 4, array()),
+                        new Course('cis405', 3, array()),
+                        new Course('cis421', 4, array()),
+                        new Course('cis423', 3, array()),
+                        new Course('cis425', 4, array()),
+                        new Course('cis435', 3, array()),
+                        new Course('cis436', 3, array()),
+                        new Course('cis437', 3, array()),
+                        new Course('cis447', 3, array()),
+                        new Course('cis451', 3, array()),
+                        new Course('cis452', 3, array()),
+                        new Course('cis467', 3, array()),
+                        new Course('cis474', 3, array()),
+                        new Course('cis476', 3, array()),
+                        new Course('cis479', 3, array()),
+                        new Course('cis481', 3, array()),
+                        new Course('cis487', 3, array()),
+                        new Course('cis488', 3, array()),
+                        new Course('ccm404', 3, array()),
+                        new Course('ccm472', 3, array()),
+                        new Course('ccm473', 3, array()),
+                        new Course('engr399', 1, array()),
+                        new Course('engr400', 3, array()),
+                        new Course('engr492', 1, array()),
+                        new Course('engr493', 1, array()),
+                        new Course('ent400', 3, array())
+                    )
+                )
+            )
+        ),
+    )
+);
+
+$cs_electives->setInversePolarity();
+
+
 // Global variable to hold the list of sections
-$sections = array($wc, $ns, $ms, $cis_core, $cs);
+$sections = array($wc, $ns, $ms, $cis_core, $cs, $cs_capstone, $cs_electives);
 
 

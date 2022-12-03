@@ -2,7 +2,7 @@
 require_once('src/autoload.php');
 require_once('fpdf185/fpdf.php');
 
-function generatePDF($courses)
+function generatePDF($semesters)
 {
     $output = ob_get_clean();
 

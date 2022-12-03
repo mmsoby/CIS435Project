@@ -33,6 +33,29 @@ class Section
         $this->inversePolarity = true;
     }
 
+    public function printCurrentState()
+    {
+        echo "Credits needed: " . $this->credits . "<br>";
+        if ($this->inversePolarity) {
+            //Use a foreach loop to print the requirements
+            foreach ($this->requirements as $requirement) {
+                echo "Requirement: " . $requirement . "<br>";
+            }
+        } else {
+            //Quadruple foreach loop to print the requirements
+            foreach ($this->requirements as $requirement) {
+                foreach ($requirement as $subRequirement) {
+                    foreach ($subRequirement as $subSubRequirement) {
+                        foreach ($subSubRequirement as $subSubSubRequirement) {
+                            echo "Optional course for you to take: " . $subSubSubRequirement->name . "<br>";
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
     private function tookTheseRegularPolarity($text)
     {
         // Iterate over the $requirements array
@@ -49,7 +72,7 @@ class Section
                             // unset the $course object from the $courseSet array
                             $this->credits -= $course->credits;
                             // Echo then mark the column for deletion
-                            echo "Deleting: " . $course->name . " " . $course->credits . " " . $course->prerequisites;
+                            echo "Deleting: " . $course->name . " " . $course->credits;
                             $delete_column = true;
                         }
                     }
@@ -75,26 +98,19 @@ class Section
             unset($this->requirements);
             echo "Deleted entire reqs";
         }
+        //Print empty line
+        echo "<br>";
     }
 
     private function tookTheseInversePolarity($text)
     {
-        // Iterate over the $requirements array
-        foreach ($this->requirements as $key1 => $row) {
-            // Iterate over the $requirement array
-            foreach ($row as $key2 => $column) {
-                // Iterate over the $row array
-                foreach ($column as $key3 => $thirdDimension) {
-                    // Iterate over the $courseSet array
-                    foreach ($thirdDimension as $key4 => $course) {
-                        if (strpos($text, $course->name) !== false) {
-                            $this->credits -= $course->credits;
-                            // Echo then delete the course
-                            echo "Deleting: " . $course->name . " " . $course->credits . " " . $course->prerequisites;
-                            unset($this->requirements[$key1][$key2][$key3][$key4]);
-                        }
-                    }
-                }
+
+        foreach ($this->requirements as $key4 => $course) {
+            if (strpos($text, $course->name) !== false) {
+                $this->credits -= $course->credits;
+                // Echo then delete the course
+                echo "Deleting: " . $course->name . " " . $course->credits;
+                unset($this->requirements[$key4]);
             }
         }
         if ($this->credits <= 0) {
@@ -102,6 +118,8 @@ class Section
             unset($this->requirements);
             echo "Deleted entire reqs";
         }
+        //Print empty line
+        echo "<br>";
     }
 
     public function iTookTheseCourses($text)
@@ -115,8 +133,24 @@ class Section
 
     public function isComplete(): bool
     {
-        return $this->credits == 0 && empty($this->requirements);
+        echo "Credits: " . $this->credits;
+        return $this->credits <= 0 && empty($this->requirements);
     }
+}
+
+//Make a function to load course objects from a csv file
+function loadCourses($filename)
+{
+    $courses = array();
+    $file = fopen($filename, "r");
+    while (($line = fgetcsv($file)) !== false) {
+        // Make courseName lowercase and remove whitespace from the start and end and middle
+        $courseName = strtolower(trim(preg_replace('/\s+/', '', $line[0])));
+        $courseCredits = $line[1];
+        $courses[] = new Course($courseName, $courseCredits, $line[2]);
+    }
+    fclose($file);
+    return $courses;
 }
 
 // Make a section with the requirements as an array of courses
@@ -442,55 +476,49 @@ $cs_capstone = new Section(4,
 // Make a section with the requirements as an array of courses for the cs electives
 $cs_electives = new Section(21,
     array(
-        //row - One row must get deleted to complete the section
-        array(
-            //column - must take just enough columns to complete the row
-            array(
-                //thirdDimension - finish one of these to complete the column
-                array(
-                    array(
-                        new Course('cis285', 3, array()),
-                        new Course('cis316', 3, array()),
-                        new Course('cis376', 4, array()),
-                        new Course('cis381', 3, array()),
-                        new Course('cis387', 4, array()),
-                        new Course('cis400', 4, array()),
-                        new Course('cis405', 3, array()),
-                        new Course('cis421', 4, array()),
-                        new Course('cis423', 3, array()),
-                        new Course('cis425', 4, array()),
-                        new Course('cis435', 3, array()),
-                        new Course('cis436', 3, array()),
-                        new Course('cis437', 3, array()),
-                        new Course('cis447', 3, array()),
-                        new Course('cis451', 3, array()),
-                        new Course('cis452', 3, array()),
-                        new Course('cis467', 3, array()),
-                        new Course('cis474', 3, array()),
-                        new Course('cis476', 3, array()),
-                        new Course('cis479', 3, array()),
-                        new Course('cis481', 3, array()),
-                        new Course('cis487', 3, array()),
-                        new Course('cis488', 3, array()),
-                        new Course('ccm404', 3, array()),
-                        new Course('ccm472', 3, array()),
-                        new Course('ccm473', 3, array()),
-                        new Course('engr399', 1, array()),
-                        new Course('engr400', 3, array()),
-                        new Course('engr492', 1, array()),
-                        new Course('engr493', 1, array()),
-                        new Course('ent400', 3, array())
-                    )
-                )
-            )
-        ),
+        new Course('cis285', 3, array()),
+        new Course('cis316', 3, array()),
+        new Course('cis376', 4, array()),
+        new Course('cis381', 3, array()),
+        new Course('cis387', 4, array()),
+        new Course('cis400', 4, array()),
+        new Course('cis405', 3, array()),
+        new Course('cis421', 4, array()),
+        new Course('cis423', 3, array()),
+        new Course('cis425', 4, array()),
+        new Course('cis435', 3, array()),
+        new Course('cis436', 3, array()),
+        new Course('cis437', 3, array()),
+        new Course('cis447', 3, array()),
+        new Course('cis451', 3, array()),
+        new Course('cis452', 3, array()),
+        new Course('cis467', 3, array()),
+        new Course('cis474', 3, array()),
+        new Course('cis476', 3, array()),
+        new Course('cis479', 3, array()),
+        new Course('cis481', 3, array()),
+        new Course('cis487', 3, array()),
+        new Course('cis488', 3, array()),
+        new Course('ccm404', 3, array()),
+        new Course('ccm472', 3, array()),
+        new Course('ccm473', 3, array()),
+        new Course('engr399', 1, array()),
+        new Course('engr400', 3, array()),
+        new Course('engr492', 1, array()),
+        new Course('engr493', 1, array()),
+        new Course('ent400', 3, array())
     )
 );
-
 $cs_electives->setInversePolarity();
+
+$ha = new Section(6, loadCourses('HumanitiesCourses.csv'));
+$ha->setInversePolarity();
+
+$ss = new Section(6, loadCourses('SBACourses.csv'));
+$ss->setInversePolarity();
 
 
 // Global variable to hold the list of sections
-$sections = array($wc, $ns, $ms, $cis_core, $cs, $cs_capstone, $cs_electives);
+$sections = array($wc, $ns, $ms, $cis_core, $cs, $cs_capstone, $cs_electives, $ha, $ss);
 
 

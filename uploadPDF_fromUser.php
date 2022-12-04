@@ -3,16 +3,26 @@ require_once('alt_autoload.php-dist');
 include('course_reqs.php');
 include('generatePDF.php');
 
-function makeSemestersOutOfCourses($courses): array
+function makeSemestersOutOfCourses($courses, $maxCredits): array
 {
     $semesters = array();
     $semester = new Semester();
     $semester->addCourse($courses[0]);
     $semesters[] = $semester;
+
+    //Sort courses by the number of prerequisites they have
+//    usort($courses, function ($a, $b) {
+//        return count($a->prerequisites) - count($b->prerequisites);
+//    });
+
     for ($i = 1; $i < count($courses); $i++) {
         $course = $courses[$i];
         $semester = $semesters[count($semesters) - 1];
-        if ($semester->canAddCourse($course)) {
+        //if the course name is cis4951 or cis4952, skip it
+        if ($course->name == "cis4951" || $course->name == "cis4952") {
+            continue;
+        }
+        if ($semester->canAddCourse($course, $maxCredits)) {
             $semester->addCourse($course);
         } else {
             $semester = new Semester();
@@ -20,6 +30,29 @@ function makeSemestersOutOfCourses($courses): array
             $semesters[] = $semester;
         }
     }
+
+    //if one of the $courses has a course named cis4952, add it to the last semester
+    foreach ($courses as $course) {
+        if ($course->name == "cis4952") {
+            $semesters[count($semesters) - 1]->addCourse($course);
+        }
+    }
+
+    //If there are more than two semesters
+    foreach ($courses as $course) {
+        if ($course->name == "cis4951") {
+            if (count($semesters) > 2) {
+                $semesters[count($semesters) - 2]->addCourse($course);
+            } else {
+                $semester = new Semester();
+                $semester->addCourse($course);
+                //Add the new semester to the beginning of the array
+                array_unshift($semesters, $semester);
+            }
+        }
+    }
+
+
     return $semesters;
 }
 
@@ -77,7 +110,7 @@ if (isset($_FILES['pdfFile'])) {
 
 
     // We now have a list of semesters
-    $semesters = makeSemestersOutOfCourses($final_courses);
+    $semesters = makeSemestersOutOfCourses($final_courses, $_POST['maxCredits']);
 
     //Print the semesters
     foreach ($semesters as $semester) {

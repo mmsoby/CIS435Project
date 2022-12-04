@@ -30,9 +30,9 @@ class Semester
         $this->credits += $course->credits;
     }
 
-    public function canAddCourse($course)
+    public function canAddCourse($course, $maxCredits)
     {
-        return $this->credits + $course->credits <= 18;
+        return $this->credits + $course->credits <= $maxCredits;
     }
 
     //Define tostring
@@ -513,7 +513,7 @@ $cs_capstone = new Section(4,
                 //thirdDimension - finish one of these to complete the column
                 array(
                     //courses - can take just one
-                    new Course('cis4951', 2, array())
+                    new Course('cis4951', 2, array('cis427'))
                 )
             ),
             //column - must take all columns to complete the row
@@ -521,7 +521,7 @@ $cs_capstone = new Section(4,
                 //thirdDimension - finish one of these to complete the column
                 array(
                     //courses - can take just one
-                    new Course('cis4952', 2, array())
+                    new Course('cis4952', 2, array('cis4951', 'cis450', 'cis427'))
                 )
             )
         ),
@@ -531,12 +531,12 @@ $cs_capstone = new Section(4,
 // Make a section with the requirements as an array of courses for the cs electives
 $cs_electives = new Section(21,
     array(
-        new Course('cis285', 3, array()),
-        new Course('cis316', 3, array()),
-        new Course('cis376', 4, array()),
-        new Course('cis381', 3, array()),
-        new Course('cis387', 4, array()),
-        new Course('cis400', 4, array()),
+        new Course('cis285', 3, array('cis200')),
+        new Course('cis316', 3, array('cis200')),
+        new Course('cis376', 4, array('cis200')),
+        new Course('cis381', 3, array('cis200')),
+        new Course('cis387', 4, array('cis200')),
+        new Course('cis400', 4, array('cis200')),
         new Course('cis405', 3, array()),
         new Course('cis411', 3, array()),
         new Course('cis421', 4, array()),
@@ -575,6 +575,6 @@ $ss->setInversePolarity();
 
 
 // Global variable to hold the list of sections
-$sections = array($wc, $ns, $ms, $cis_core, $cs, $cs_capstone, $cs_electives, $ha, $ss);
+$sections = array($wc, $ns, $ms, $cis_core, $ha, $ss, $cs, $cs_electives, $cs_capstone);
 
 

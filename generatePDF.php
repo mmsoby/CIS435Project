@@ -44,7 +44,7 @@ function generatePDF($semesters)
         $pdf->SetFillColor(255, 255, 0);
 
         // add a rectangle for the semester box
-        $pdf->Rect(10 * $i, $pdf->GetY(), 190, 10, 'DF');
+        $pdf->Rect(10, $pdf->GetY(), 190, 10, 'DF');
 
         // add the semester name to the document
         $pdf->Cell(0, 10, getStartingDate($i));

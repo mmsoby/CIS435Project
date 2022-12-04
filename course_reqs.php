@@ -122,6 +122,8 @@ class Section
                             $this->credits -= $course->credits;
                             // Echo then mark the column for deletion
                             echo "Deleting: " . $course->name . " " . $course->credits;
+                            //Remove course->name from the $text
+                            $text = str_replace($course->name, "", $text);
                             $delete_column = true;
                         }
                     }
@@ -149,6 +151,7 @@ class Section
         }
         //Print empty line
         echo "<br>";
+        return $text;
     }
 
     private function tookTheseInversePolarity($text)
@@ -159,6 +162,8 @@ class Section
                 $this->credits -= $course->credits;
                 // Echo then delete the course
                 echo "Deleting: " . $course->name . " " . $course->credits;
+                //Remove course->name from the $text
+                $text = str_replace($course->name, "", $text);
                 unset($this->requirements[$key4]);
             }
         }
@@ -169,14 +174,15 @@ class Section
         }
         //Print empty line
         echo "<br>";
+        return $text;
     }
 
     public function iTookTheseCourses($text)
     {
         if ($this->inversePolarity) {
-            $this->tookTheseInversePolarity($text);
+            return $this->tookTheseInversePolarity($text);
         } else {
-            $this->tookTheseRegularPolarity($text);
+            return $this->tookTheseRegularPolarity($text);
         }
     }
 
@@ -454,13 +460,6 @@ $cs = new Section(20,
                     //courses - can take just one
                     new Course('astr130', 4, array())
                 )
-            ),//column - must take all columns to complete the row
-            array(
-                //thirdDimension - finish one of these to complete the column
-                array(
-                    //courses - can take just one
-                    new Course('astr131', 4, array())
-                )
             ),
             //column - must take all columns to complete the row
             array(
@@ -539,6 +538,7 @@ $cs_electives = new Section(21,
         new Course('cis387', 4, array()),
         new Course('cis400', 4, array()),
         new Course('cis405', 3, array()),
+        new Course('cis411', 3, array()),
         new Course('cis421', 4, array()),
         new Course('cis423', 3, array()),
         new Course('cis425', 4, array()),

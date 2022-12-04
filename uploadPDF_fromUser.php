@@ -56,7 +56,7 @@ if (isset($_FILES['pdfFile'])) {
     // Iterate through the sections
     foreach ($sections as $section) {
         // Iterate through the requirements
-        $section->iTookTheseCourses($text);
+        $text = $section->iTookTheseCourses($text);
 
         if ($section->isComplete()) {
             echo "Section complete";
@@ -86,7 +86,7 @@ if (isset($_FILES['pdfFile'])) {
     }
 
     $output = ob_get_clean();
-//    echo $output;
+    echo $output;
 
 
     //Generate the PDF

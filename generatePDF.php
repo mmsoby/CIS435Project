@@ -2,13 +2,13 @@
 require_once('src/autoload.php');
 require_once('fpdf185/fpdf.php');
 
-function getStartingDate($semNum): string
+function getStartingDate(): string
 {
     // Get the current date and time
     $currentDate = new DateTime();
 
     // Get the current year
-    $currentYear = intval($currentDate->format('Y')) + $semNum;
+    $currentYear = intval($currentDate->format('Y'));
 
     // Get the current month (as a number from 1 to 12)
     $currentMonth = $currentDate->format('n');
@@ -35,6 +35,7 @@ function generatePDF($semesters)
     $pdf->SetTitle('My Degree Plan');
     $pdf->AddPage();
     // iterate over the semesters array and add a block for each semester
+    $currentSem = getStartingDate();
     for ($i = 0; $i < count($semesters); $i++) {
         // set the font and font size for the document
         $pdf->SetFont('Arial', 'B', 16);
@@ -49,7 +50,14 @@ function generatePDF($semesters)
         foreach ($semesters[$i]->courses as $course) {
             $creditSum += $course->credits;
         }
-        $pdf->Cell(0, 10, getStartingDate($i) . " - " . $creditSum . " Credits", 0, 1, 'C');
+        $pdf->Cell(0, 10, $currentSem . " - " . $creditSum . " Credits", 0, 1, 'C');
+
+        // Update the semester
+        if (strpos($currentSem, "Fall") !== false) {
+            $currentSem = "Winter " . (intval(substr($currentSem, 5)) + 1);
+        } else {
+            $currentSem = "Fall " . substr($currentSem, 6);
+        }
 
         // add a line break after the semester name
         $pdf->Ln();

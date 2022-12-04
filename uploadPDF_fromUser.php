@@ -39,7 +39,16 @@ if (isset($_FILES['pdfFile'])) {
     $text = strtolower($text);
 
     //Delete everything after the string "Courses in Progress"
-    $text = substr($text, 0, strpos($text, "course(s) in progressterm"));
+    $pos = strrpos($text, "term");
+    if ($pos !== false) {
+        $pos = strrpos(substr($text, 0, $pos), "term");
+    }
+
+// If "term" was found, delete everything after it
+    if ($pos !== false) {
+        $text = substr($text, 0, $pos + strlen("term"));
+    }
+//    echo $text;
 
     global $sections;
     ob_start();
@@ -71,17 +80,17 @@ if (isset($_FILES['pdfFile'])) {
     $semesters = makeSemestersOutOfCourses($final_courses);
 
     //Print the semesters
-//    foreach ($semesters as $semester) {
-//        echo $semester;
-//        echo "<br>";
-//    }
+    foreach ($semesters as $semester) {
+        echo $semester;
+        echo "<br>";
+    }
 
     $output = ob_get_clean();
-    echo $output;
+//    echo $output;
 
 
     //Generate the PDF
-    //generatePDF($semesters);
+    generatePDF($semesters);
 }
 
 //header("Location: GetClasses.html");

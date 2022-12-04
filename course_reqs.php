@@ -452,7 +452,14 @@ $cs = new Section(20,
                 //thirdDimension - finish one of these to complete the column
                 array(
                     //courses - can take just one
-                    new Course('science-course', 4, array())
+                    new Course('astr130', 4, array())
+                )
+            ),//column - must take all columns to complete the row
+            array(
+                //thirdDimension - finish one of these to complete the column
+                array(
+                    //courses - can take just one
+                    new Course('astr131', 4, array())
                 )
             ),
             //column - must take all columns to complete the row

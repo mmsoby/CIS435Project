@@ -34,12 +34,10 @@ function generatePDF($semesters)
     // set the document title and add a page to the document
     $pdf->SetTitle('My Degree Plan');
     $pdf->AddPage();
-
-    // set the font and font size for the document
-    $pdf->SetFont('Arial', 'B', 16);
-
     // iterate over the semesters array and add a block for each semester
     for ($i = 0; $i < count($semesters); $i++) {
+        // set the font and font size for the document
+        $pdf->SetFont('Arial', 'B', 16);
         // set the fill color for the semester box
         $pdf->SetFillColor(255, 255, 0);
 
@@ -47,12 +45,17 @@ function generatePDF($semesters)
         $pdf->Rect(10, $pdf->GetY(), 190, 10, 'DF');
 
         // add the semester name to the document
-        $pdf->Cell(0, 10, getStartingDate($i));
+        $creditSum = 0;
+        foreach ($semesters[$i]->courses as $course) {
+            $creditSum += $course->credits;
+        }
+        $pdf->Cell(0, 10, getStartingDate($i) . " - " . $creditSum . " Credits", 0, 1, 'C');
 
         // add a line break after the semester name
         $pdf->Ln();
 
         // add the courses for the current semester
+        $pdf->SetFont('Arial', '', 12);
         foreach ($semesters[$i]->courses as $course) {
             // add the course name to the document
             $pdf->Cell(0, 10, $course->name);

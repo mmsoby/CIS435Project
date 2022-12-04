@@ -30,7 +30,7 @@ class Semester
         $this->credits += $course->credits;
     }
 
-    public function canAddCourse($course, $maxCredits)
+    public function canAddCourse($course, $maxCredits = 18)
     {
         return $this->credits + $course->credits <= $maxCredits;
     }

@@ -57,7 +57,7 @@ function makeSemestersOutOfCourses($courses, $maxCredits): array
 }
 
 if (isset($_FILES['pdfFile'])) {
-//    ob_start();
+    //ob_start();
     error_reporting(E_ERROR | E_PARSE);
     $source_file = $_FILES['pdfFile']['tmp_name'];
 

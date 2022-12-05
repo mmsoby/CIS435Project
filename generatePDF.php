@@ -28,6 +28,7 @@ function generatePDF($semesters)
 {
     ob_clean();
     flush();
+    ob_start();
     $output = ob_get_clean();
 
     //Generate the PDF

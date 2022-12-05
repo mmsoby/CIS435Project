@@ -63,8 +63,8 @@ if (isset($_FILES['pdfFile'])) {
     $file_name = $_FILES['pdfFile']['name'];
     $new_file_name = $file_name;
 
-    echo $source_file;
-    echo $new_file_name;
+//    echo $source_file;
+//    echo $new_file_name;
 
     //Upload the file to the server
     $file_destination = 'Resources/UserFiles/' . $new_file_name;
@@ -72,7 +72,12 @@ if (isset($_FILES['pdfFile'])) {
 
     // Begin php parse using php library
     $parser = new \Smalot\PdfParser\Parser();
-    $pdf = $parser->parseFile($file_destination);
+    try {
+        $pdf = $parser->parseFile($file_destination);
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+        exit;
+    }
     $text = $pdf->getText();
 
     // Remove whitespace from the start and end of the string
@@ -94,7 +99,7 @@ if (isset($_FILES['pdfFile'])) {
 //    echo $text;
 
     global $sections;
-    ob_start();
+//    ob_start();
 
     // Iterate through the sections
     foreach ($sections as $section) {
@@ -102,13 +107,13 @@ if (isset($_FILES['pdfFile'])) {
         $text = $section->iTookTheseCourses($text);
 
         if ($section->isComplete()) {
-            echo "Section complete";
+//            echo "Section complete";
         } else {
-            echo "Section incomplete";
+//            echo "Section incomplete";
         }
     }
-    ob_end_clean();
-    ob_start();
+//    ob_end_clean();
+//    ob_start();
 
     //Now that the sections are updated and contain the classes that can be taken...
     //print all the sections and their requirements
@@ -123,13 +128,13 @@ if (isset($_FILES['pdfFile'])) {
     $semesters = makeSemestersOutOfCourses($final_courses, $_POST['maxCredits']);
 
     //Print the semesters
-    foreach ($semesters as $semester) {
-        echo $semester;
-        echo "<br>";
-    }
-
-    $output = ob_get_clean();
-    echo $output;
+//    foreach ($semesters as $semester) {
+//        echo $semester;
+//        echo "<br>";
+//    }
+//
+//    $output = ob_get_clean();
+//    echo $output;
 
 
     //Generate the PDF

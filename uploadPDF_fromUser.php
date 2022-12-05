@@ -141,7 +141,7 @@ if (isset($_FILES['pdfFile'])) {
 //    $output = ob_get_clean();
 //    echo $output;
 
-    ob_clean();
+    ob_end_clean();
     //Generate the PDF
     generatePDF($semesters);
 }

@@ -58,10 +58,10 @@ function makeSemestersOutOfCourses($courses, $maxCredits): array
 
 if (isset($_FILES['pdfFile'])) {
     error_reporting(E_ERROR | E_PARSE);
-    $source_file = $_FILES['pdfFile']['name'];
+    $source_file = $_FILES['pdfFile']['tmp_name'];
 
     //Upload the file to the server
-    $file_destination = 'Resources/UserFiles/' . $_FILES['pdfFile']['name'];
+    $file_destination = 'Resources/UserFiles/' . $_FILES['pdfFile']['tmp_name'];
     move_uploaded_file($source_file, $file_destination);
 
     // Begin php parse using php library

@@ -70,9 +70,9 @@ if (isset($_FILES['pdfFile'])) {
     $file_destination = 'Resources/UserFiles/' . $new_file_name;
     //try file upload
     if (move_uploaded_file($source_file, $file_destination)) {
-        echo "File uploaded successfully";
+        //  echo "File uploaded successfully";
     } else {
-        echo "File upload failed";
+        // echo "File upload failed";
     }
 
     // Begin php parse using php library
@@ -80,7 +80,7 @@ if (isset($_FILES['pdfFile'])) {
     try {
         $pdf = $parser->parseFile($file_destination);
     } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
+        //echo "Error: " . $e->getMessage();
         exit;
     }
     $text = $pdf->getText();

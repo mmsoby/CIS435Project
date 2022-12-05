@@ -60,8 +60,15 @@ if (isset($_FILES['pdfFile'])) {
     error_reporting(E_ERROR | E_PARSE);
     $source_file = $_FILES['pdfFile']['tmp_name'];
 
+    $file_name = $_FILES['pdfFile']['name'];
+    $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
+    $new_file_name = time() . "." . $file_extension;
+
+    echo $source_file;
+    echo $new_file_name;
+
     //Upload the file to the server
-    $file_destination = 'Resources/UserFiles/' . $_FILES['pdfFile']['tmp_name'];
+    $file_destination = 'Resources/UserFiles/' . $new_file_name;
     move_uploaded_file($source_file, $file_destination);
 
     // Begin php parse using php library

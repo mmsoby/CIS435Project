@@ -61,8 +61,7 @@ if (isset($_FILES['pdfFile'])) {
     $source_file = $_FILES['pdfFile']['tmp_name'];
 
     $file_name = $_FILES['pdfFile']['name'];
-    $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
-    $new_file_name = $file_name . "." . $file_extension;
+    $new_file_name = $file_name;
 
     echo $source_file;
     echo $new_file_name;

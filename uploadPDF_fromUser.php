@@ -61,11 +61,12 @@ if (isset($_FILES['pdfFile'])) {
     $source_file = $_FILES['pdfFile']['tmp_name'];
 
     //Upload the file to the server
-
+    $file_destination = 'Resources/UserFiles/' . $_FILES['pdfFile']['name'];
+    move_uploaded_file($source_file, $file_destination);
 
     // Begin php parse using php library
     $parser = new \Smalot\PdfParser\Parser();
-    $pdf = $parser->parseFile($source_file);
+    $pdf = $parser->parseFile($file_destination);
     $text = $pdf->getText();
 
     // Remove whitespace from the start and end of the string

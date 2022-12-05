@@ -73,7 +73,7 @@ function generatePDF($semesters)
         }
     }
 
-
+    ob_end_clean();
     $pdf->Output();
 //    $output = ob_get_clean();
     //echo $output;

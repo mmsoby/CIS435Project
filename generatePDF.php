@@ -26,6 +26,7 @@ function getStartingDate(): string
 
 function generatePDF($semesters)
 {
+    ob_clean();
     $output = ob_get_clean();
 
     //Generate the PDF

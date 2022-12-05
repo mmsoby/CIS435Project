@@ -68,7 +68,12 @@ if (isset($_FILES['pdfFile'])) {
 
     //Upload the file to the server
     $file_destination = '/Resources/UserFiles/' . $new_file_name;
-    move_uploaded_file($source_file, $file_destination);
+    //try file upload
+    if (move_uploaded_file($source_file, $file_destination)) {
+        echo "File uploaded successfully";
+    } else {
+        echo "File upload failed";
+    }
 
     // Begin php parse using php library
     $parser = new \Smalot\PdfParser\Parser();

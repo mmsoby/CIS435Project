@@ -57,22 +57,22 @@ function makeSemestersOutOfCourses($courses, $maxCredits): array
 }
 
 if (isset($_FILES['pdfFile'])) {
-    //ob_start();
+    ob_start();
     error_reporting(E_ERROR | E_PARSE);
     $source_file = $_FILES['pdfFile']['tmp_name'];
 
     $new_file_name = $_FILES['pdfFile']['name'];
 
-//    echo $source_file;
-//    echo $new_file_name;
+    echo $source_file;
+    echo $new_file_name;
 
     //Upload the file to the server
     $file_destination = 'Resources/UserFiles/' . $new_file_name;
     //try file upload
     if (move_uploaded_file($source_file, $file_destination)) {
-        //  echo "File uploaded successfully";
+        echo "File uploaded successfully";
     } else {
-        // echo "File upload failed";
+        echo "File upload failed";
     }
 
     // Begin php parse using php library
@@ -101,10 +101,10 @@ if (isset($_FILES['pdfFile'])) {
     if ($pos !== false) {
         $text = substr($text, 0, $pos + strlen("term"));
     }
-//    echo $text;
+    echo $text;
 
     global $sections;
-//    ob_start();
+    ob_start();
 
     // Iterate through the sections
     foreach ($sections as $section) {
@@ -112,13 +112,13 @@ if (isset($_FILES['pdfFile'])) {
         $text = $section->iTookTheseCourses($text);
 
         if ($section->isComplete()) {
-//            echo "Section complete";
+            echo "Section complete";
         } else {
-//            echo "Section incomplete";
+            echo "Section incomplete";
         }
     }
-//    ob_end_clean();
-//    ob_start();
+    ob_end_clean();
+    ob_start();
 
     //Now that the sections are updated and contain the classes that can be taken...
     //print all the sections and their requirements
@@ -133,15 +133,15 @@ if (isset($_FILES['pdfFile'])) {
     $semesters = makeSemestersOutOfCourses($final_courses, $_POST['maxCredits']);
 
     //Print the semesters
-//    foreach ($semesters as $semester) {
-//        echo $semester;
-//        echo "<br>";
-//    }
-//
-//    $output = ob_get_clean();
-//    echo $output;
+    foreach ($semesters as $semester) {
+        echo $semester;
+        echo "<br>";
+    }
 
-//    ob_end_clean();
+    $output = ob_get_clean();
+    echo $output;
+
+    ob_end_clean();
     //Generate the PDF
     generatePDF($semesters);
 }

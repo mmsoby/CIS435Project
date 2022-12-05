@@ -66,7 +66,7 @@ class Section
 
     public function getRemainingCourses(): array
     {
-        //echo "Credits needed: " . $this->credits . "<br>";
+        echo "Credits needed: " . $this->credits . "<br>";
         $remaining_courses = array();
         // Iterate through the requirements using a quadruple foreach loop
         if ($this->inversePolarity) {
@@ -78,7 +78,7 @@ class Section
                 $this->credits -= $course->credits;
                 $remaining_courses[] = $course;
 
-                //echo "Optional individual course for you to take: " . $course->name . "<br>";
+                echo "Optional individual course for you to take: " . $course->name . "<br>";
             }
         } else {
             //Get the shortest requirement
@@ -96,7 +96,7 @@ class Section
             //TODO: Figure out how to handle this adding and printing part
             //Make sure every one of the subSubRequirements is satisfied
             foreach ($shortest as $subSubRequirement) {
-                //echo "Optional course for you to take:" . $subSubRequirement[0][0]->name . "<br>";
+                echo "Optional course for you to take:" . $subSubRequirement[0][0]->name . "<br>";
                 $remaining_courses[] = $subSubRequirement[0][0];
             }
 
@@ -121,7 +121,7 @@ class Section
                             // unset the $course object from the $courseSet array
                             $this->credits -= $course->credits;
                             // Echo then mark the column for deletion
-                            //echo "Deleting: " . $course->name . " " . $course->credits;
+                            echo "Deleting: " . $course->name . " " . $course->credits;
                             //Remove course->name from the $text
                             $text = str_replace($course->name, "", $text);
                             $delete_column = true;
@@ -130,7 +130,7 @@ class Section
                     // Check if the $thirdDimension array contains null
                     if ($delete_column) {
                         //Delete the column
-                        //echo "Deleting column";
+                        echo "Deleting column";
                         unset($this->requirements[$key1][$key2]);
                     }
                 }
@@ -138,19 +138,19 @@ class Section
             // If at least one row is empty, then all requirements are met
             if (empty($this->requirements[$key1])) {
                 //Mark the row for deletion
-                //echo "Deleting row";
+                echo "Deleting row";
                 $this->requirements[$key1] = null;
             }
         }
         // Check if the $row array is empty
-        //echo $this->credits;
+        echo $this->credits;
         if (in_array(null, $this->requirements) && $this->credits <= 0) {
             // delete the entire $requirements array
             unset($this->requirements);
-            //echo "Deleted entire reqs";
+            echo "Deleted entire reqs";
         }
         //Print empty line
-        //echo "<br>";
+        echo "<br>";
         return $text;
     }
 
@@ -161,7 +161,7 @@ class Section
             if (strpos($text, $course->name) !== false) {
                 $this->credits -= $course->credits;
                 // Echo then delete the course
-                //echo "Deleting: " . $course->name . " " . $course->credits;
+                echo "Deleting: " . $course->name . " " . $course->credits;
                 //Remove course->name from the $text
                 $text = str_replace($course->name, "", $text);
                 unset($this->requirements[$key4]);
@@ -170,10 +170,10 @@ class Section
         if ($this->credits <= 0) {
             // delete the entire $requirements array
             unset($this->requirements);
-            //echo "Deleted entire reqs";
+            echo "Deleted entire reqs";
         }
         //Print empty line
-        //echo "<br>";
+        echo "<br>";
         return $text;
     }
 
@@ -188,7 +188,7 @@ class Section
 
     public function isComplete(): bool
     {
-        //echo "Credits: " . $this->credits;
+        echo "Credits: " . $this->credits;
         return $this->credits <= 0 && empty($this->requirements);
     }
 }

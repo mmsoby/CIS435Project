@@ -29,7 +29,6 @@ function generatePDF($semesters)
     ob_clean();
     flush();
     ob_start();
-    $output = ob_get_clean();
 
     //Generate the PDF
     $pdf = new FPDF();
@@ -78,5 +77,6 @@ function generatePDF($semesters)
 
 
     $pdf->Output();
+    $output = ob_get_clean();
     echo $output;
 }

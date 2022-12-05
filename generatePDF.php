@@ -76,6 +76,6 @@ function generatePDF($semesters)
     }
 
 
-    $pdf->Output();
+    $pdf->Output('MyDegreePlan.pdf', 'F');
     echo $output;
 }

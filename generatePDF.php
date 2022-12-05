@@ -73,8 +73,9 @@ function generatePDF($semesters)
         }
     }
 
-    ob_end_clean();
+
     $pdf->Output();
+    ob_end_clean();
 //    $output = ob_get_clean();
     //echo $output;
 }

@@ -67,7 +67,7 @@ if (isset($_FILES['pdfFile'])) {
 //    echo $new_file_name;
 
     //Upload the file to the server
-    $file_destination = 'Resources/UserFiles/' . $new_file_name;
+    $file_destination = '/Resources/UserFiles/' . $new_file_name;
     move_uploaded_file($source_file, $file_destination);
 
     // Begin php parse using php library

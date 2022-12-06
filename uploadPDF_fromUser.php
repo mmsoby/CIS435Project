@@ -2,14 +2,14 @@
 require_once('alt_autoload.php-dist');
 include('course_reqs.php');
 include('generatePDF.php');
-// import the composer autoloader
-require_once __DIR__ . '/vendor/autoload.php';
-
-// import the namespaces
-use Symfony\Component\Filesystem\Filesystem,
-    Xthiago\PDFVersionConverter\Converter\GhostscriptConverterCommand,
-    Xthiago\PDFVersionConverter\Converter\GhostscriptConverter;
-use Xthiago\PDFVersionConverter\Guesser\RegexGuesser;
+//// import the composer autoloader
+//require_once __DIR__ . '/vendor/autoload.php';
+//
+//// import the namespaces
+//use Symfony\Component\Filesystem\Filesystem,
+//    Xthiago\PDFVersionConverter\Converter\GhostscriptConverterCommand,
+//    Xthiago\PDFVersionConverter\Converter\GhostscriptConverter;
+//use Xthiago\PDFVersionConverter\Guesser\RegexGuesser;
 
 
 function makeSemestersOutOfCourses($courses, $maxCredits): array
@@ -68,18 +68,18 @@ function makeSemestersOutOfCourses($courses, $maxCredits): array
 
 function getPDFText($file_destination)
 {
-    $tempPath = $file_destination . 'tmp.pdf';
-    copy($file_destination, $tempPath);
-
-    $guesser = new RegexGuesser();
-    $pdfVersion = $guesser->guess($tempPath);
-
-    if ($pdfVersion != '1.3') {
-        $command = new GhostscriptConverterCommand();
-        $filesystem = new Filesystem();
-        $converter = new GhostscriptConverter($command, $filesystem);
-        $converter->convert($tempPath, '1.3');
-    }
+//    $tempPath = $file_destination . 'tmp.pdf';
+//    copy($file_destination, $tempPath);
+//
+//    $guesser = new RegexGuesser();
+//    $pdfVersion = $guesser->guess($tempPath);
+//
+//    if ($pdfVersion != '1.3') {
+//        $command = new GhostscriptConverterCommand();
+//        $filesystem = new Filesystem();
+//        $converter = new GhostscriptConverter($command, $filesystem);
+//        $converter->convert($tempPath, '1.3');
+//    }
 
 //    $command = new GhostscriptConverterCommand();
 //    $filesystem = new Filesystem();
@@ -89,7 +89,7 @@ function getPDFText($file_destination)
 //    // Begin php parse using php library
     $parser = new \Smalot\PdfParser\Parser();
     try {
-        $pdf = $parser->parseFile($tempPath);
+        $pdf = $parser->parseFile($file_destination);
     } catch (Exception $e) {
         //echo "Error: " . $e->getMessage();
         exit;

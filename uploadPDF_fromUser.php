@@ -6,52 +6,53 @@ include('generatePDF.php');
 function makeSemestersOutOfCourses($courses, $maxCredits): array
 {
     $semesters = array();
-    $semester = new Semester();
-    $semester->addCourse($courses[0]);
-    $semesters[] = $semester;
+    //Get the total number of credtis
+    $totalCredits = 0;
+    for ($i = 0; $i < count($courses); $i++) {
+        $totalCredits += $courses[$i]->credits;
+    }
+    echo "Total Credits: " . $totalCredits . "<br>";
 
-    //Sort courses by the number of prerequisites they have
-//    usort($courses, function ($a, $b) {
-//        return count($a->prerequisites) - count($b->prerequisites);
-//    });
+    //Get the number of semesters
+    $numSemesters = ceil($totalCredits / $maxCredits);
+    echo "numSemesters: " . $numSemesters . "<br>";
 
-    for ($i = 1; $i < count($courses); $i++) {
+    //Create the $numSemesters number of semesters
+    for ($i = 0; $i < $numSemesters; $i++) {
+        $semesters[] = new Semester();
+    }
+
+    //If $courses contains cis4951, add it to the second to last semester and remove it from $courses
+    for ($i = 0; $i < count($courses); $i++) {
+        if ($courses[$i]->name == "cis4952") {
+            $semesters[$numSemesters - 1]->addCourse($courses[$i]);
+        }
+
+        // Do the same for cis4951
+        if ($courses[$i]->name == "cis4951") {
+            $semesters[$numSemesters - 2]->addCourse($courses[$i]);
+        }
+    }
+
+    //Add the remaining courses to the semesters
+    $lookingAtSemester = 0;
+    for ($i = 0; $i < count($courses); $i++) {
         $course = $courses[$i];
-        $semester = $semesters[count($semesters) - 1];
         //if the course name is cis4951 or cis4952, skip it
         if ($course->name == "cis4951" || $course->name == "cis4952") {
             continue;
         }
-        if ($semester->canAddCourse($course, $maxCredits)) {
-            $semester->addCourse($course);
-        } else {
-            $semester = new Semester();
-            $semester->addCourse($course);
-            $semesters[] = $semester;
+        if (!$semesters[$lookingAtSemester]->canAddCourse($course, $maxCredits)) {
+            $lookingAtSemester += 1;
         }
-    }
-
-    //if one of the $courses has a course named cis4952, add it to the last semester
-    foreach ($courses as $course) {
-        if ($course->name == "cis4952") {
-            $semesters[count($semesters) - 1]->addCourse($course);
+        echo "lookingAtSemester: " . $lookingAtSemester . "<br>";
+        echo "course: " . $course->name . "<br>";
+        //If $semesters[$lookingAtSemester] is null, create a new semester
+        if ($semesters[$lookingAtSemester] == null) {
+            $semesters[$lookingAtSemester] = new Semester();
         }
+        $semesters[$lookingAtSemester]->addCourse($course);
     }
-
-    //If there are more than two semesters
-    foreach ($courses as $course) {
-        if ($course->name == "cis4951") {
-            if (count($semesters) > 2) {
-                $semesters[count($semesters) - 2]->addCourse($course);
-            } else {
-                $semester = new Semester();
-                $semester->addCourse($course);
-                //Add the new semester to the beginning of the array
-                array_unshift($semesters, $semester);
-            }
-        }
-    }
-
 
     return $semesters;
 }

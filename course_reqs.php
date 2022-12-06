@@ -22,6 +22,8 @@ class Semester
 
     public function __construct()
     {
+        $this->courses = array();
+        $this->credits = 0;
     }
 
     public function addCourse($course)
@@ -30,7 +32,7 @@ class Semester
         $this->credits += $course->credits;
     }
 
-    public function canAddCourse($course, $maxCredits = 18)
+    public function canAddCourse($course, $maxCredits)
     {
         return $this->credits + $course->credits <= $maxCredits;
     }
@@ -484,8 +486,8 @@ $cs = new Section(20,
                 //thirdDimension - finish one of these to complete the column
                 array(
                     //courses - can take just one
-                    new Course('cis405', 4, array()),
-                    new Course('cis479', 4, array()),
+                    new Course('cis405', 3, array()),
+                    new Course('cis479', 3, array()),
                 )
             ),
             //column - must take all columns to complete the row
@@ -493,7 +495,7 @@ $cs = new Section(20,
                 //thirdDimension - finish one of these to complete the column
                 array(
                     //courses - can take just one
-                    new Course('cis479', 4, array()),
+                    new Course('cis479', 3, array()),
                     new Course('engr400', 4, array()),
                     new Course('ent400', 4, array()),
                     new Course('imse421', 4, array())

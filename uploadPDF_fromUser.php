@@ -2,6 +2,14 @@
 require_once('alt_autoload.php-dist');
 include('course_reqs.php');
 include('generatePDF.php');
+// import the composer autoloader
+require_once __DIR__ . '/vendor/autoload.php';
+
+// import the namespaces
+use Symfony\Component\Filesystem\Filesystem,
+    Xthiago\PDFVersionConverter\Converter\GhostscriptConverterCommand,
+    Xthiago\PDFVersionConverter\Converter\GhostscriptConverter;
+
 
 function makeSemestersOutOfCourses($courses, $maxCredits): array
 {
@@ -59,6 +67,11 @@ function makeSemestersOutOfCourses($courses, $maxCredits): array
 
 function getPDFText($file_destination)
 {
+    $command = new GhostscriptConverterCommand();
+    $filesystem = new Filesystem();
+
+    $converter = new GhostscriptConverter($command, $filesystem);
+    $converter->convert($file_destination, '1.3');
     // Begin php parse using php library
     $parser = new \Smalot\PdfParser\Parser();
     try {
@@ -67,8 +80,7 @@ function getPDFText($file_destination)
         //echo "Error: " . $e->getMessage();
         exit;
     }
-    $text = $pdf->getText();
-    return $text;
+    return $pdf->getText();
 }
 
 if (isset($_FILES['pdfFile'])) {

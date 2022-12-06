@@ -67,12 +67,12 @@ function makeSemestersOutOfCourses($courses, $maxCredits): array
 
 function getPDFText($file_destination)
 {
-    $command = new GhostscriptConverterCommand();
-    $filesystem = new Filesystem();
-
-    $converter = new GhostscriptConverter($command, $filesystem);
-    $converter->convert($file_destination, '1.3');
-    // Begin php parse using php library
+//    $command = new GhostscriptConverterCommand();
+//    $filesystem = new Filesystem();
+//
+//    $converter = new GhostscriptConverter($command, $filesystem);
+//    $converter->convert($file_destination, '1.3');
+//    // Begin php parse using php library
     $parser = new \Smalot\PdfParser\Parser();
     try {
         $pdf = $parser->parseFile($file_destination);

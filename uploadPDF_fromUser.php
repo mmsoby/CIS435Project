@@ -130,7 +130,13 @@ if (isset($_FILES['pdfFile'])) {
 
 
     // We now have a list of semesters
-    $semesters = makeSemestersOutOfCourses($final_courses, $_POST['maxCredits']);
+    //if $_POST['maxCredits'] is not set, set it to 18
+    $maxCredits = 18;
+    if (isset($_POST['maxCredits'])) {
+        $maxCredits = $_POST['maxCredits'];
+    }
+
+    $semesters = makeSemestersOutOfCourses($final_courses, $maxCredits);
 
     //Print the semesters
     foreach ($semesters as $semester) {

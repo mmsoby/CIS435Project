@@ -57,6 +57,20 @@ function makeSemestersOutOfCourses($courses, $maxCredits): array
     return $semesters;
 }
 
+function getPDFText($file_destination)
+{
+    // Begin php parse using php library
+    $parser = new \Smalot\PdfParser\Parser();
+    try {
+        $pdf = $parser->parseFile($file_destination);
+    } catch (Exception $e) {
+        //echo "Error: " . $e->getMessage();
+        exit;
+    }
+    $text = $pdf->getText();
+    return $text;
+}
+
 if (isset($_FILES['pdfFile'])) {
     ob_start();
     error_reporting(E_ERROR | E_PARSE);
@@ -76,15 +90,7 @@ if (isset($_FILES['pdfFile'])) {
         echo "File upload failed";
     }
 
-    // Begin php parse using php library
-    $parser = new \Smalot\PdfParser\Parser();
-    try {
-        $pdf = $parser->parseFile($file_destination);
-    } catch (Exception $e) {
-        //echo "Error: " . $e->getMessage();
-        exit;
-    }
-    $text = $pdf->getText();
+    $text = getPDFText($file_destination);
 
     // Remove whitespace from the start and end of the string
     $text = trim($text);
@@ -98,7 +104,7 @@ if (isset($_FILES['pdfFile'])) {
         $pos = strrpos(substr($text, 0, $pos), "term");
     }
 
-// If "term" was found, delete everything after it
+    // If "term" was found, delete everything after it
     if ($pos !== false) {
         $text = substr($text, 0, $pos + strlen("term"));
     }

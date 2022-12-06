@@ -26,47 +26,6 @@ function getStartingDate(): string
 
 function generatePDF($semesters)
 {
-//    echo "<script src='https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js'
-//        integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl'
-//        crossorigin="anonymous"></script>";
-//    // Begin the list of semesters
-//    echo "<ul class='list-group'>";
-//
-//    $currentSem = getStartingDate();
-//    // Iterate over the semesters
-//    foreach ($semesters as $semester) {
-//        // Begin the semester item
-//        echo "<li class='list-group-item'>";
-//
-//        // Print the semester name
-//        echo "<h4 class='bg-warning'>" . $currentSem . "</h4>";
-//
-//        // Update the semester
-//        if (strpos($currentSem, "Fall") !== false) {
-//            $currentSem = "Winter " . (intval(substr($currentSem, 5)) + 1);
-//        } else {
-//            $currentSem = "Fall " . substr($currentSem, 6);
-//        }
-//
-//        // Begin the list of courses
-//        echo "<ul class='list-group'>";
-//
-//        // Iterate over the courses in the semester
-//        foreach ($semester->courses as $course) {
-//            // Print the course name
-//            echo "<li class='list-group-item'>" . $course->name . "</li>";
-//        }
-//
-//        // End the list of courses
-//        echo "</ul>";
-//
-//        // End the semester item
-//        echo "</li>";
-//    }
-//
-//    // End the list of semesters
-//    echo "</ul>";
-
     ob_start();
 
     //Generate the PDF
@@ -116,6 +75,4 @@ function generatePDF($semesters)
 
     ob_end_clean();
     $pdf->Output();
-//    $output = ob_get_clean();
-    //echo $output;
 }
